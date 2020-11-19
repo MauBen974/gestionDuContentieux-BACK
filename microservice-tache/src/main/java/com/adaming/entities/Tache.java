@@ -42,12 +42,10 @@ public class Tache implements Serializable {
 	private String titreTache;
 	private String descriptionTache;
 	private Boolean statusAudience;
-//	@ManyToOne
-//	@JoinColumn(name = idUtilisateur, referencedColumnName = idUtilisateur)
-//	private Utilisateur utilisateur;
-//	@ManyToOne
-//	@JoinColumn(name = idTribunal, referencedColumn = idTribunal)
-//	private Tribunal tribunal;
+
+	private Long idUtilisateur;
+	private Long idTribunal;
+
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "Tache_Phase", joinColumns = { @JoinColumn(name = "idTache") }, inverseJoinColumns = {
 			@JoinColumn(name = "idPhase") })
