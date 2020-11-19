@@ -1,4 +1,4 @@
-package com.adaming.entity;
+package com.adaming.entities;
 
 import java.io.Serializable;
 

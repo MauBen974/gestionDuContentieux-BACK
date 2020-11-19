@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.adaming.entity.Utilisateur;
+import com.adaming.entities.Utilisateur;
 import com.adaming.repositories.UtilisateurRepository;
 
 @Service

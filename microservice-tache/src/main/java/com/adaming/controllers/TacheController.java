@@ -46,6 +46,7 @@ public class TacheController {
 		servTache.delete(id);
 	}
 
+	/*
 	@PutMapping(value = "taches/{pId}")
 	public Tache update(@PathVariable(value = "tId") Long id, @RequestBody Tache tIn) {
 		Tache tOut = servTache.findOne(id);
@@ -58,6 +59,7 @@ public class TacheController {
 
 		return servTache.save(tOut);
 	}
+	*/
 
 	@GetMapping(value = "taches/{libellePhase}")
 	public List<Tache> findBylibellePhase(@PathVariable(value = "libellePhase") String libellePhase) {

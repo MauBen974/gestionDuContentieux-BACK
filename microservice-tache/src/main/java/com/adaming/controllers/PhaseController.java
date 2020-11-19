@@ -46,6 +46,7 @@ public class PhaseController {
 		servPhase.delete(id);
 	}
 
+	/*
 	@PutMapping(value = "phases/{pId}")
 	public Phase update(@PathVariable(value = "pId") Long id, @RequestBody Phase pIn) {
 		Phase pOut = servPhase.findOne(id);
@@ -57,4 +58,5 @@ public class PhaseController {
 
 		return servPhase.save(pOut);
 	}
+	*/
 }
