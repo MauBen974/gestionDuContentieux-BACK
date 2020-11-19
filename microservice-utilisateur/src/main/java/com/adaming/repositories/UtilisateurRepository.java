@@ -16,7 +16,7 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> 
 	@Query("from Utilisateur u where u.email like :x and u.password like :y")
     public Utilisateur authentification(@Param("x") String email, @Param("y") String password);
 	
-	@Query("from Utilisateur u where u.archive == false")
+	@Query("from Utilisateur u where u.archive is false")
     public List<Utilisateur> findAllIfArchiveFalse();
 	
 	@Query("from Utilisateur u where u.idUtilisateur like :x and u.archive like false")
