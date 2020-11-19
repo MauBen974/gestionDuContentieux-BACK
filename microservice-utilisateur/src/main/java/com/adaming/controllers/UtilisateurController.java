@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.adaming.entity.Utilisateur;
+import com.adaming.entities.Utilisateur;
 import com.adaming.services.IUtilisateurService;
 
 @RestController

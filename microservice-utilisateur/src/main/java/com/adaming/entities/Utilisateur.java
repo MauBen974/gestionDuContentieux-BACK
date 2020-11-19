@@ -1,4 +1,4 @@
-package com.adaming.entity;
+package com.adaming.entities;
 
 import java.io.Serializable;
 
@@ -17,7 +17,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-public abstract class Utilisateur implements Serializable {
+public class Utilisateur implements Serializable {
 
 	/**
 	 * 

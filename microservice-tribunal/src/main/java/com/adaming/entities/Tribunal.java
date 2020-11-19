@@ -86,5 +86,5 @@ public class Tribunal implements Serializable {
 	public void setArchive(boolean archive) {
 		this.archive = archive;
 	}
-
+	
 }
