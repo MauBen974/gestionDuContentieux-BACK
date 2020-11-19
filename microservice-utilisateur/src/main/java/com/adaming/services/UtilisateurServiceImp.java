@@ -14,7 +14,7 @@ public class UtilisateurServiceImp implements IUtilisateurService {
 
 	@Autowired
 	UtilisateurRepository utilisateurRepo;
-	
+
 	@Override
 	public List<Utilisateur> findAll() {
 		return utilisateurRepo.findAll();
@@ -26,12 +26,12 @@ public class UtilisateurServiceImp implements IUtilisateurService {
 	}
 
 	@Override
-	public Utilisateur findOne(Long id) {
-		return utilisateurRepo.getOne(id);
+	public Optional<Utilisateur> findOne(Long id) {
+		return utilisateurRepo.findById(id);
 	}
 
 	@Override
-	public Utilisateur findOneIfAchiveFalse(Long id) {
+	public Optional<Utilisateur> findOneIfAchiveFalse(Long id) {
 		return utilisateurRepo.findOneIfAchiveFalse(id);
 	}
 
@@ -47,15 +47,15 @@ public class UtilisateurServiceImp implements IUtilisateurService {
 	}
 
 	@Override
-	public Utilisateur authentification(String email, String password) {
-		return utilisateurRepo.authentification(email, password);
+	public Utilisateur archiveUtilisateur(Long id) {
+		Utilisateur utilisateur = utilisateurRepo.findById(id).get();
+		utilisateur.setArchive(true);
+		return utilisateurRepo.save(utilisateur);
 	}
 
 	@Override
-	public Utilisateur archiveUtilisateur(Long id) {
-		Utilisateur utilisateur = utilisateurRepo.findOneIfAchiveFalse(id);
-		utilisateur.setArchive(true);
-		return utilisateurRepo.save(utilisateur);
+	public Optional<Utilisateur> authentification(String email, String password) {
+		return utilisateurRepo.authentification(email, password);
 	}
 
 }

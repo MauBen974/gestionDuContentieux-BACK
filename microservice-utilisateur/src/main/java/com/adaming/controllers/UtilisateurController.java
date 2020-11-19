@@ -37,12 +37,12 @@ public class UtilisateurController {
 	}
 
 	@GetMapping("/utilisateurs-archives/{idUtilisateur}")
-	public Utilisateur findOne(@PathVariable("idUtilisateur") Long id) {
+	public Optional<Utilisateur> findOne(@PathVariable("idUtilisateur") Long id) {
 		return utilisateurService.findOne(id);
 	}
 
 	@GetMapping("/utilisateurs/{idUtilisateur}")
-	public Utilisateur findOneIfAchiveFalse(@PathVariable("idUtilisateur") Long id) {
+	public Optional<Utilisateur> findOneIfAchiveFalse(@PathVariable("idUtilisateur") Long id) {
 		return utilisateurService.findOneIfAchiveFalse(id);
 	}
 
@@ -62,7 +62,7 @@ public class UtilisateurController {
 	}
 
 	@GetMapping("/authentification")
-	public Utilisateur authentification(@RequestParam("email") String email,
+	public Optional<Utilisateur> authentification(@RequestParam("email") String email,
 			@RequestParam("password") String password) {
 		return utilisateurService.authentification(email, password);
 	}

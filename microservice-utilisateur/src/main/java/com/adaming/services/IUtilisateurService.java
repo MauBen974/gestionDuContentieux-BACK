@@ -9,11 +9,11 @@ public interface IUtilisateurService {
 
 	List<Utilisateur> findAll();
 	List<Utilisateur> findAllIfArchiveFalse();
-	Utilisateur findOne(Long id);
-	Utilisateur findOneIfAchiveFalse(Long id);
+	Optional<Utilisateur> findOne(Long id);
+	Optional<Utilisateur> findOneIfAchiveFalse(Long id);
 	Utilisateur saveUtilisateur(Utilisateur utilisateur);
 	void deleteUtilisateur(Long id);
 	Utilisateur archiveUtilisateur(Long id);
-	Utilisateur authentification(String username, String password);
+	Optional<Utilisateur> authentification(String username, String password);
 	
 }
