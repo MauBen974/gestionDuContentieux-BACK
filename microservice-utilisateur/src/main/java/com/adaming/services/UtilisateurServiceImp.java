@@ -26,12 +26,12 @@ public class UtilisateurServiceImp implements IUtilisateurService {
 	}
 
 	@Override
-	public Optional<Utilisateur> findOne(Long id) {
-		return utilisateurRepo.findById(id);
+	public Utilisateur findOne(Long id) {
+		return utilisateurRepo.getOne(id);
 	}
 
 	@Override
-	public Optional<Utilisateur> findOneIfAchiveFalse(Long id) {
+	public Utilisateur findOneIfAchiveFalse(Long id) {
 		return utilisateurRepo.findOneIfAchiveFalse(id);
 	}
 
@@ -47,8 +47,15 @@ public class UtilisateurServiceImp implements IUtilisateurService {
 	}
 
 	@Override
-	public Optional<Utilisateur> authentification(String email, String password) {
+	public Utilisateur authentification(String email, String password) {
 		return utilisateurRepo.authentification(email, password);
+	}
+
+	@Override
+	public Utilisateur archiveUtilisateur(Long id) {
+		Utilisateur utilisateur = utilisateurRepo.findOneIfAchiveFalse(id);
+		utilisateur.setArchive(true);
+		return utilisateurRepo.save(utilisateur);
 	}
 
 }

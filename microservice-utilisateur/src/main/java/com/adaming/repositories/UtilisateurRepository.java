@@ -14,11 +14,11 @@ import com.adaming.entities.Utilisateur;
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
 
 	@Query("from Utilisateur u where u.email like :x and u.password like :y")
-    public Optional<Utilisateur> authentification(@Param("x") String email, @Param("y") String password);
+    public Utilisateur authentification(@Param("x") String email, @Param("y") String password);
 	
-	@Query("from Utilisateur u where u.archive like false")
+	@Query("from Utilisateur u where u.archive is false")
     public List<Utilisateur> findAllIfArchiveFalse();
 	
 	@Query("from Utilisateur u where u.idUtilisateur like :x and u.archive like false")
-    public Optional<Utilisateur> findOneIfAchiveFalse(@Param("x") Long id);
+    public Utilisateur findOneIfAchiveFalse(@Param("x") Long id);
 }
