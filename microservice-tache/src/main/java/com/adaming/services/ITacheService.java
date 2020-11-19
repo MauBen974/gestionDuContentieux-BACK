@@ -17,4 +17,8 @@ public interface ITacheService {
 	Tache save(Tache tIn);
 
 	void delete(Long id);
+	
+	List<Tache> findBylibellePhase(String libellePhase);
+	
+	List<Tache> findByStatusAudience(Boolean statusAudience);
 }

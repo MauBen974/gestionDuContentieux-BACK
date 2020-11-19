@@ -38,4 +38,14 @@ public class TacheServiceImpl implements ITacheService {
 		repoTache.deleteById(id);
 	}
 
+	@Override
+	public List<Tache> findBylibellePhase(String libellePhase) {
+		return repoTache.findBylibellePhase(libellePhase);
+	}
+
+	@Override
+	public List<Tache> findByStatusAudience(Boolean statusAudience) {
+		return repoTache.findByStatusAudience(statusAudience);
+	}
+
 }

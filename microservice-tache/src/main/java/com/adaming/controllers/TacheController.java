@@ -58,4 +58,14 @@ public class TacheController {
 
 		return servTache.save(tOut);
 	}
+
+	@GetMapping(value = "taches/{libellePhase}")
+	public List<Tache> findBylibellePhase(@PathVariable(value = "libellePhase") String libellePhase) {
+		return servTache.findBylibellePhase(libellePhase);
+	}
+
+	@GetMapping(value = "taches/{statusAudience}")
+	public List<Tache> findByStatusAudience(@PathVariable(value = "statusAudience") Boolean statusAudience) {
+		return servTache.findByStatusAudience(statusAudience);
+	}
 }
