@@ -1,7 +1,6 @@
 package com.adaming.repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,11 +13,11 @@ import com.adaming.entity.Utilisateur;
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
 
 	@Query("from Utilisateur u where u.email like :x and u.password like :y")
-    public Utilisateur authentification(@Param("x") String email, @Param("y") String password);
-	
+	public Utilisateur authentification(@Param("x") String email, @Param("y") String password);
+
 	@Query("from Utilisateur u where u.archive is false")
-    public List<Utilisateur> findAllIfArchiveFalse();
-	
+	public List<Utilisateur> findAllIfArchiveFalse();
+
 	@Query("from Utilisateur u where u.idUtilisateur like :x and u.archive like false")
-    public Utilisateur findOneIfAchiveFalse(@Param("x") Long id);
+	public Utilisateur findOneIfAchiveFalse(@Param("x") Long id);
 }

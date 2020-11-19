@@ -22,10 +22,10 @@ import com.adaming.services.IUtilisateurService;
 @RestController
 @CrossOrigin
 public class UtilisateurController {
-	
+
 	@Autowired
 	IUtilisateurService utilisateurService;
-	
+
 	@GetMapping("/utilisateurs-archives")
 	public List<Utilisateur> findAll() {
 		return utilisateurService.findAll();
@@ -35,12 +35,12 @@ public class UtilisateurController {
 	public List<Utilisateur> findIfAchiveFalse() {
 		return utilisateurService.findAllIfArchiveFalse();
 	}
-	
+
 	@GetMapping("/utilisateurs-archives/{idUtilisateur}")
 	public Utilisateur findOne(@PathVariable("idUtilisateur") Long id) {
 		return utilisateurService.findOne(id);
 	}
-	
+
 	@GetMapping("/utilisateurs/{idUtilisateur}")
 	public Utilisateur findOneIfAchiveFalse(@PathVariable("idUtilisateur") Long id) {
 		return utilisateurService.findOneIfAchiveFalse(id);
@@ -51,19 +51,19 @@ public class UtilisateurController {
 		return utilisateurService.saveUtilisateur(utilisateur);
 	}
 
-
 	@PostMapping("/utilisateurs/{idUtilisateur}")
 	public Utilisateur archiveUtilisateur(@PathVariable("idUtilisateur") Long id) {
 		return utilisateurService.archiveUtilisateur(id);
 	}
-	
+
 	@DeleteMapping("/utilisateurs/{idUtilisateur}")
 	public void deleteUtilisateur(@PathVariable("idUtilisateur") Long id) {
 		utilisateurService.deleteUtilisateur(id);
 	}
 
 	@GetMapping("/authentification")
-	public Utilisateur authentification(@RequestParam("email") String email, @RequestParam("password") String password) {
+	public Utilisateur authentification(@RequestParam("email") String email,
+			@RequestParam("password") String password) {
 		return utilisateurService.authentification(email, password);
 	}
 
