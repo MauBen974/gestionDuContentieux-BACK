@@ -37,6 +37,7 @@ public class UtilisateurServiceImp implements IUtilisateurService {
 
 	@Override
 	public Utilisateur saveUtilisateur(Utilisateur utilisateur) {
+		utilisateur.setArchive(false);
 		return utilisateurRepo.save(utilisateur);
 	}
 
