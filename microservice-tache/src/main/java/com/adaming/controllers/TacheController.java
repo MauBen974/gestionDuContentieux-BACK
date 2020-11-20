@@ -1,6 +1,7 @@
 package com.adaming.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adaming.dto.TacheDTO;
 import com.adaming.entities.Tache;
+import com.adaming.mapper.TacheMapper;
 import com.adaming.services.ITacheService;
 
 /**
@@ -26,19 +29,23 @@ public class TacheController {
 	@Autowired
 	private ITacheService servTache;
 
+	@Autowired
+	private TacheMapper tacheMapper;
+
 	@GetMapping(value = "/taches")
-	public List<Tache> getAll() {
-		return servTache.getAll();
+	public List<TacheDTO> getAll() {
+		return (List<TacheDTO>) servTache.getAll().stream().map(e -> tacheMapper.convertToTacheDTO(e))
+				.collect(Collectors.toList());
 	}
 
 	@GetMapping(value = "/taches/{tId}")
-	public Tache findOne(@PathVariable(value = "tId") Long id) {
-		return servTache.findOne(id);
+	public TacheDTO findOne(@PathVariable(value = "tId") Long id) {
+		return tacheMapper.convertToTacheDTO(servTache.findOne(id));
 	}
 
 	@PostMapping(value = "/taches")
-	public Tache save(@RequestBody Tache tIn) {
-		return servTache.save(tIn);
+	public TacheDTO save(@RequestBody Tache tIn) {
+		return tacheMapper.convertToTacheDTO(servTache.save(tIn));
 	}
 
 	@DeleteMapping(value = "taches/{tId}")
@@ -46,9 +53,8 @@ public class TacheController {
 		servTache.delete(id);
 	}
 
-	/*
 	@PutMapping(value = "taches/{pId}")
-	public Tache update(@PathVariable(value = "tId") Long id, @RequestBody Tache tIn) {
+	public TacheDTO update(@PathVariable(value = "tId") Long id, @RequestBody Tache tIn) {
 		Tache tOut = servTache.findOne(id);
 
 		tOut.setTitreTache(tIn.getTitreTache());
@@ -57,17 +63,18 @@ public class TacheController {
 		tOut.setStatusAudience(tIn.getStatusAudience());
 		tOut.setPhases(tIn.getPhases());
 
-		return servTache.save(tOut);
+		return tacheMapper.convertToTacheDTO(servTache.save(tOut));
 	}
-	*/
 
 	@GetMapping(value = "taches/{libellePhase}")
-	public List<Tache> findBylibellePhase(@PathVariable(value = "libellePhase") String libellePhase) {
-		return servTache.findBylibellePhase(libellePhase);
+	public List<TacheDTO> findBylibellePhase(@PathVariable(value = "libellePhase") String libellePhase) {
+		return (List<TacheDTO>) servTache.findBylibellePhase(libellePhase).stream()
+				.map(e -> tacheMapper.convertToTacheDTO(e)).collect(Collectors.toList());
 	}
 
 	@GetMapping(value = "taches/{statusAudience}")
-	public List<Tache> findByStatusAudience(@PathVariable(value = "statusAudience") Boolean statusAudience) {
-		return servTache.findByStatusAudience(statusAudience);
+	public List<TacheDTO> findByStatusAudience(@PathVariable(value = "statusAudience") Boolean statusAudience) {
+		return (List<TacheDTO>) servTache.findByStatusAudience(statusAudience).stream()
+				.map(e -> tacheMapper.convertToTacheDTO(e)).collect(Collectors.toList());
 	}
 }
