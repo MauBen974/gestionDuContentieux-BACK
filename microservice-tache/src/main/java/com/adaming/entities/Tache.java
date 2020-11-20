@@ -35,7 +35,7 @@ public class Tache implements Serializable {
 	private Long idUtilisateur;
 	private Long idTribunal;
 
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany
 	@JoinTable(name = "Tache_Phase", joinColumns = { @JoinColumn(name = "idTache") }, inverseJoinColumns = {
 			@JoinColumn(name = "idPhase") })
 	private List<Phase> phases;
