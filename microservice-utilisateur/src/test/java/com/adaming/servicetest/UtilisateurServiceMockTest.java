@@ -3,7 +3,6 @@ package com.adaming.servicetest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
@@ -95,7 +93,7 @@ public class UtilisateurServiceMockTest {
 	public void readUnknownUtilisateurById_shouldReturnNull() {
 		assertFalse(utilisateurService.findOne(3L).isPresent());
 	}
-	
+
 //	@Test
 //	@Sql(statements = { "DELETE FROM utilisateur",
 //			"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(2, 'valid@gmail.com', 'nomUser', 0)" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
@@ -105,21 +103,25 @@ public class UtilisateurServiceMockTest {
 //		assertNull(utilisateur);
 //
 //	}
-	
+
 	@Test
 	@Sql(statements = "DELETE FROM utilisateur")
 	public void readAllUtilisateurEmptyList_shouldReturnEmptyList() {
 		List<Utilisateur> listAll = utilisateurService.findAll();
 		assertTrue(listAll.isEmpty());
 	}
-	
+
 	@Test
 	@Sql(statements = { "DELETE FROM utilisateur",
-	"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(2, 'valid@gmail.com', 'nomUser', 0)",
-	"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(3, 'validbis@gmail.com', 'deuxièmeNom', 1)"},executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+			"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(2, 'valid@gmail.com', 'nomUser', 0)",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(3, 'validbis@gmail.com', 'deuxièmeNom', 1)" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 	public void readAllUtilisateurWithData_shouldReturnSize() {
 		List<Utilisateur> listAll = utilisateurService.findAll();
 		assertEquals(2, listAll.size());
 	}
-	
+
+	// DELETE JE SAIS PAS FAIRE AVEC CE PUTAIN DE VOID
+	// LA METHODE CREATE EST PAS SECURE DONC JE PEUX SAVE DES UTILISATEUR DEJA
+	// PRESENT
+
 }
