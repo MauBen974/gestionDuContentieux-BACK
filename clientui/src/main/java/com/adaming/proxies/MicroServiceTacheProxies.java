@@ -35,7 +35,7 @@ public interface MicroServiceTacheProxies {
 	@GetMapping(value = "/taches")
 	public List<TacheBean> getAllTache();
 
-	@GetMapping(value = "/taches/{tId}")
+	@GetMapping(value = "/tachesById/{tId}")
 	public TacheBean findOneTache(@PathVariable(value = "tId") Long id);
 
 	@PostMapping(value = "/taches")
@@ -47,10 +47,10 @@ public interface MicroServiceTacheProxies {
 	@PutMapping(value = "taches/{tId}")
 	public TacheBean updateTache(@PathVariable(value = "tId") Long id, @RequestBody TacheBean tIn);
 
-	@GetMapping(value = "taches/{libellePhase}")
+	@GetMapping(value = "tachesLibelle/{libellePhase}")
 	public List<TacheBean> findTacheBylibellePhase(@PathVariable(value = "libellePhase") String libellePhase);
 
-	@GetMapping(value = "taches/{statusAudience}")
+	@GetMapping(value = "tachesAudience/{statusAudience}")
 	public List<TacheBean> findTacheByStatusAudience(@PathVariable(value = "statusAudience") Boolean statusAudience);
 
 }

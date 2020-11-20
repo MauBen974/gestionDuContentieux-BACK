@@ -38,7 +38,7 @@ public class TacheController {
 				.collect(Collectors.toList());
 	}
 
-	@GetMapping(value = "/taches/{tId}")
+	@GetMapping(value = "/tachesById/{tId}")
 	public TacheDTO findOne(@PathVariable(value = "tId") Long id) {
 		return tacheMapper.convertToTacheDTO(servTache.findOne(id));
 	}
@@ -53,7 +53,7 @@ public class TacheController {
 		servTache.delete(id);
 	}
 
-	@PutMapping(value = "taches/{pId}")
+	@PutMapping(value = "taches/{tId}")
 	public TacheDTO update(@PathVariable(value = "tId") Long id, @RequestBody Tache tIn) {
 		Tache tOut = servTache.findOne(id);
 
@@ -66,13 +66,13 @@ public class TacheController {
 		return tacheMapper.convertToTacheDTO(servTache.save(tOut));
 	}
 
-	@GetMapping(value = "taches/{libellePhase}")
+	@GetMapping(value = "tachesLibelle/{libellePhase}")
 	public List<TacheDTO> findBylibellePhase(@PathVariable(value = "libellePhase") String libellePhase) {
 		return (List<TacheDTO>) servTache.findBylibellePhase(libellePhase).stream()
 				.map(e -> tacheMapper.convertToTacheDTO(e)).collect(Collectors.toList());
 	}
 
-	@GetMapping(value = "taches/{statusAudience}")
+	@GetMapping(value = "tachesAudience/{statusAudience}")
 	public List<TacheDTO> findByStatusAudience(@PathVariable(value = "statusAudience") Boolean statusAudience) {
 		return (List<TacheDTO>) servTache.findByStatusAudience(statusAudience).stream()
 				.map(e -> tacheMapper.convertToTacheDTO(e)).collect(Collectors.toList());

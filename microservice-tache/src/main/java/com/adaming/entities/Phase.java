@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author VITTOZ Guillaume
  *
@@ -27,6 +29,7 @@ public class Phase implements Serializable {
 	private Enum<LibellePhase> libellePhase;
 	private Date dateDebut;
 	private Date dateFin;
+	@JsonIgnore
 	@ManyToMany(mappedBy = "phases")
 	private List<Tache> taches;
 

@@ -21,4 +21,5 @@ public interface ITacheService {
 	List<Tache> findBylibellePhase(String libellePhase);
 	
 	List<Tache> findByStatusAudience(Boolean statusAudience);
+	
 }

@@ -16,12 +16,12 @@ import com.adaming.entities.Tache;
 @Repository
 public interface ITacheRepository extends JpaRepository<Tache, Long> {
 
-//	public List<Tache> findByUtilisateur(Utilisateur utilisateur);
+//	public List<Tache> findByIdUtilisateur(Long utilisateur);
 
 	@Query(value = "SELECT * FROM tache WHERE tache.idTache=Tache_Phase.idTache INNER JOIN Tache_Phase.idPhase = phase.idPhase AND phase.libellePhase = :libellePhase", nativeQuery = true)
 	public List<Tache> findBylibellePhase(@Param(value = "libellePhase") String libellePhase);
 
-	@Query(value = "SELECT * FROM tache WHERE statusAudience = :statusAudience", nativeQuery = true)
+	@Query(value = "from Tache t where t.statusAudience is :statusAudience")
 	public List<Tache> findByStatusAudience(@Param(value = "statusAudience") Boolean statusAudience);
 	
 	
