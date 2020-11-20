@@ -2,6 +2,7 @@ package com.adaming.controllers;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.websocket.server.PathParam;
 
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adaming.dto.UtilisateurDTO;
 import com.adaming.entities.Utilisateur;
+import com.adaming.mapper.IUtilisateurMapper;
 import com.adaming.services.IUtilisateurService;
 
 @RestController
@@ -25,35 +28,39 @@ public class UtilisateurController {
 
 	@Autowired
 	IUtilisateurService utilisateurService;
+	@Autowired
+	IUtilisateurMapper utilisateurMapper;
 
 	@GetMapping("/utilisateurs-archives")
-	public List<Utilisateur> findAll() {
-		return utilisateurService.findAll();
+	public List<UtilisateurDTO> findAll() {
+		return (List<UtilisateurDTO>) utilisateurService.findAll().stream()
+				.map(u -> utilisateurMapper.convertToUtilisateurDTO(u)).collect(Collectors.toList());
 	}
 
 	@GetMapping("/utilisateurs")
-	public List<Utilisateur> findIfAchiveFalse() {
-		return utilisateurService.findAllIfArchiveFalse();
+	public List<UtilisateurDTO> findIfAchiveFalse() {
+		return (List<UtilisateurDTO>) utilisateurService.findAllIfArchiveFalse().stream()
+				.map(u -> utilisateurMapper.convertToUtilisateurDTO(u)).collect(Collectors.toList());
 	}
 
 	@GetMapping("/utilisateurs-archives/{idUtilisateur}")
-	public Optional<Utilisateur> findOne(@PathVariable("idUtilisateur") Long id) {
-		return utilisateurService.findOne(id);
+	public Optional<UtilisateurDTO> findOne(@PathVariable("idUtilisateur") Long id) {
+		return utilisateurMapper.convertToUtilisateurDTO(utilisateurService.findOne(id));
 	}
 
 	@GetMapping("/utilisateurs/{idUtilisateur}")
-	public Optional<Utilisateur> findOneIfAchiveFalse(@PathVariable("idUtilisateur") Long id) {
-		return utilisateurService.findOneIfAchiveFalse(id);
+	public Optional<UtilisateurDTO> findOneIfAchiveFalse(@PathVariable("idUtilisateur") Long id) {
+		return utilisateurMapper.convertToUtilisateurDTO(utilisateurService.findOneIfAchiveFalse(id));
 	}
 
 	@PostMapping("/utilisateurs")
-	public Utilisateur saveUtilisateur(@RequestBody Utilisateur utilisateur) {
-		return utilisateurService.saveUtilisateur(utilisateur);
+	public UtilisateurDTO saveUtilisateur(@RequestBody Utilisateur utilisateur) {
+		return utilisateurMapper.convertToUtilisateurDTO(utilisateurService.saveUtilisateur(utilisateur));
 	}
 
 	@PostMapping("/utilisateurs/{idUtilisateur}")
-	public Utilisateur archiveUtilisateur(@PathVariable("idUtilisateur") Long id) {
-		return utilisateurService.archiveUtilisateur(id);
+	public UtilisateurDTO archiveUtilisateur(@PathVariable("idUtilisateur") Long id) {
+		return utilisateurMapper.convertToUtilisateurDTO(utilisateurService.archiveUtilisateur(id));
 	}
 
 	@DeleteMapping("/utilisateurs/{idUtilisateur}")
@@ -62,9 +69,9 @@ public class UtilisateurController {
 	}
 
 	@GetMapping("/authentification")
-	public Optional<Utilisateur> authentification(@RequestParam("email") String email,
+	public Optional<UtilisateurDTO> authentification(@RequestParam("email") String email,
 			@RequestParam("password") String password) {
-		return utilisateurService.authentification(email, password);
+		return utilisateurMapper.convertToUtilisateurDTO(utilisateurService.authentification(email, password));
 	}
 
 }
