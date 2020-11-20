@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author VITTOZ Guillaume
@@ -27,6 +29,7 @@ public class Tache implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTache;
+	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
 	private String titreTache;
 	private String descriptionTache;
