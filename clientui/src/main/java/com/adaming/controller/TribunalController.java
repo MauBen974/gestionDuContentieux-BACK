@@ -26,6 +26,16 @@ public class TribunalController {
 	public List<TribunalBean> findAll() {
 		return microserviceTribunalProxies.findAll();
 	}
+	
+	@GetMapping("/tribunalNotArchive")
+	public List<TribunalBean> findAllArchiveFalse() {
+		return microserviceTribunalProxies.findAllArchiveFalse();
+	}
+	
+	@GetMapping("/tribunalArchive")
+	public List<TribunalBean> findAllArchiveTrue() {
+		return microserviceTribunalProxies.findAllArchiveTrue();
+	}
 
 	@GetMapping("/tribunal/{id}")
 	public Optional<TribunalBean> findOne(@PathVariable(name = "id") Long id) {
@@ -40,6 +50,11 @@ public class TribunalController {
 	@DeleteMapping("/tribunal/{id}")
 	public void delete(@PathVariable(name = "id") Long id) {
 		microserviceTribunalProxies.delete(id);
+	}
+	
+	@PostMapping("/tribunal/{id}")
+	public TribunalBean setArchiveTrue(@PathVariable(name = "id") Long id) {
+		return microserviceTribunalProxies.setArchiveTrue(id);
 	}
 
 }
