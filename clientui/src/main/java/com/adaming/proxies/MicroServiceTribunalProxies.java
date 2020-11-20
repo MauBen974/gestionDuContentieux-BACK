@@ -19,6 +19,12 @@ public interface MicroServiceTribunalProxies {
 	 @GetMapping("/tribunal")
 	 List<TribunalBean> findAll();
 	 
+	 @GetMapping("/tribunalNotArchive")
+	 List<TribunalBean> findAllArchiveFalse();
+	 
+	 @GetMapping("/tribunalArchive")
+	 List<TribunalBean> findAllArchiveTrue();
+	 
 	 @GetMapping("/tribunal/{id}")
 	 Optional<TribunalBean> findOne(@PathVariable(name = "id") Long id);
 	 
@@ -27,5 +33,8 @@ public interface MicroServiceTribunalProxies {
 	 
 	 @DeleteMapping("/tribunal/{id}")
 	 void delete(@PathVariable(name = "id") Long id);
+	 
+	 @PostMapping("tribunal/{id}")
+	 TribunalBean setArchiveTrue(@PathVariable(name = "id") Long id);
  
 }

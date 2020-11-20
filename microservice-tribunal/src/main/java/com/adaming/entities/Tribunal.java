@@ -86,5 +86,15 @@ public class Tribunal implements Serializable {
 	public void setArchive(boolean archive) {
 		this.archive = archive;
 	}
+
+	@Override
+	public String toString() {
+		return "Tribunal [idTribunal=" + idTribunal + ", adresse=" + adresse + ", email=" + email + ", tel=" + tel
+				+ ", region=" + region + ", nomTribunal=" + nomTribunal + ", archive=" + archive + "]";
+	}
+
+	public Tribunal() {
+		super();
+	}
 	
 }
