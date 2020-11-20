@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.adaming.entities.Phase;
 
+/**
+ * @author VITTOZ Guillaume
+ *
+ */
 public interface IPhaseService {
 
 	List<Phase> getAll();

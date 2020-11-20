@@ -1,6 +1,7 @@
 package com.adaming.servicetest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.Collection;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.adaming.entities.Utilisateur;
@@ -18,46 +20,64 @@ import com.adaming.services.UtilisateurServiceImp;
 
 @SpringBootTest
 public class UtilisateurServiceMockTest {
-	Utilisateur utilisateur;
-	Long idUtilisateur = 1L;
+//	Utilisateur utilisateur;
+//	Long idUtilisateur = 1L;
+//	
+//	@Mock
+//	private UtilisateurRepository utilisateurRepository;
+//	
+//	@InjectMocks
+//	private IUtilisateurService utilisateurService = new UtilisateurServiceImp();
+//	
+//	//TEST FIND BY ID--------------------------------------
+//	@BeforeEach
+//	void setMockOutPut() {
+//		when(utilisateurRepository.findById(idUtilisateur).get()).thenReturn(utilisateur);
+//	}
+//	
+//	@Test
+//	public void testFindOneById() {
+//		Utilisateur result = utilisateurService.findOne(idUtilisateur).get();
+//		assertEquals(idUtilisateur,result.getIdUtilisateur());
+//	}
+//	
+//	//TEST FIND ALL----------------------------------------
+//	@Test
+//	public void testFindAll() {
+//		assertEquals(Collection.class, utilisateurService.findAll());
+//	}
+//	
+//	//TEST SAVE--------------------------------------------
+//	@Test
+//	public void testSave() {
+//		Utilisateur utilisateur = new Utilisateur();
+//		assertEquals(Utilisateur.class, utilisateurService.saveUtilisateur(utilisateur));
+//	}
+//	
+//	//TEST DELETE------------------------------------------
+////	@Test
+////	public void testDelete() {
+////		Utilisateur utilisateur = new Utilisateur();
+////		utilisateurService.deleteUtilisateur(utilisateur.getIdUtilisateur());
+////		assertEquals(null,utilisateurService.findOne(utilisateur.getIdUtilisateur()).isEmpty());
+////	}
 	
-	@Mock
-	private UtilisateurRepository utilisateurRepository;
-	
-	@InjectMocks
-	private IUtilisateurService utilisateurService = new UtilisateurServiceImp();
-	
-	//TEST FIND BY ID--------------------------------------
-	@BeforeEach
-	void setMockOutPut() {
-		when(utilisateurRepository.findById(idUtilisateur).get()).thenReturn(utilisateur);
-	}
+	@Autowired
+	IUtilisateurService utilisateurService;
 	
 	@Test
-	public void testFindOneById() {
-		Utilisateur result = utilisateurService.findOne(idUtilisateur).get();
-		assertEquals(idUtilisateur,result.getIdUtilisateur());
-	}
-	
-	//TEST FIND ALL----------------------------------------
-	@Test
-	public void testFindAll() {
-		assertEquals(Collection.class, utilisateurService.findAll());
-	}
-	
-	//TEST SAVE--------------------------------------------
-	@Test
-	public void testSave() {
+	public void createValidUtilisateur_ShouldReturnUtilisateurObject() {
 		Utilisateur utilisateur = new Utilisateur();
-		assertEquals(Utilisateur.class, utilisateurService.saveUtilisateur(utilisateur));
+		utilisateur.setNom("nomtest");
+		utilisateur.setPrenom("prenomTest");
+		utilisateur.setEmail("valid@gmail.com");
+		utilisateur.setPassword("validPassword");
+		
+		Utilisateur retour = utilisateurService.saveUtilisateur(utilisateur);
+		assertNotNull(retour);
+		assertEquals(retour.getEmail(), "valid@gmail.com");
 	}
 	
-	//TEST DELETE------------------------------------------
-	@Test
-	public void testDelete() {
-		Utilisateur utilisateur = new Utilisateur();
-		utilisateurService.deleteUtilisateur(utilisateur.getIdUtilisateur());
-		assertEquals(null,utilisateurService.findOne(utilisateur.getIdUtilisateur()).isEmpty());
-	}
+	
 	
 }
