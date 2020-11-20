@@ -13,22 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 /**
  * @author VITTOZ Guillaume
  *
  */
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class Tache implements Serializable {
 
 	/**
@@ -50,5 +39,84 @@ public class Tache implements Serializable {
 	@JoinTable(name = "Tache_Phase", joinColumns = { @JoinColumn(name = "idTache") }, inverseJoinColumns = {
 			@JoinColumn(name = "idPhase") })
 	private List<Phase> phases;
+
+	public Long getIdTache() {
+		return idTache;
+	}
+
+	public void setIdTache(Long idTache) {
+		this.idTache = idTache;
+	}
+
+	public Date getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(Date dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public String getTitreTache() {
+		return titreTache;
+	}
+
+	public void setTitreTache(String titreTache) {
+		this.titreTache = titreTache;
+	}
+
+	public String getDescriptionTache() {
+		return descriptionTache;
+	}
+
+	public void setDescriptionTache(String descriptionTache) {
+		this.descriptionTache = descriptionTache;
+	}
+
+	public Boolean getStatusAudience() {
+		return statusAudience;
+	}
+
+	public void setStatusAudience(Boolean statusAudience) {
+		this.statusAudience = statusAudience;
+	}
+
+	public Long getIdUtilisateur() {
+		return idUtilisateur;
+	}
+
+	public void setIdUtilisateur(Long idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
+	}
+
+	public Long getIdTribunal() {
+		return idTribunal;
+	}
+
+	public void setIdTribunal(Long idTribunal) {
+		this.idTribunal = idTribunal;
+	}
+
+	public List<Phase> getPhases() {
+		return phases;
+	}
+
+	public void setPhases(List<Phase> phases) {
+		this.phases = phases;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Tache [idTache=" + idTache + ", dateCreation=" + dateCreation + ", titreTache=" + titreTache
+				+ ", descriptionTache=" + descriptionTache + ", statusAudience=" + statusAudience + ", idUtilisateur="
+				+ idUtilisateur + ", idTribunal=" + idTribunal + ", phases=" + phases + "]";
+	}
+
+	public Tache() {
+		super();
+	}
 
 }
