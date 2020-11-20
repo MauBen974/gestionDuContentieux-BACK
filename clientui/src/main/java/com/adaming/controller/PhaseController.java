@@ -13,38 +13,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adaming.beans.PhaseBean;
-import com.adaming.proxies.MicroServicePhaseProxies;
+import com.adaming.proxies.MicroServiceTacheProxies;
 
 @RestController
 @CrossOrigin
 public class PhaseController {
 	
 	@Autowired
-	private MicroServicePhaseProxies microservicePhaseProxies;
+	private MicroServiceTacheProxies microserviceTacheProxies;
 	
 	@GetMapping(value = "/phases")
 	public List<PhaseBean> getAll(){
-		return microservicePhaseProxies.getAll();
+		return microserviceTacheProxies.getAllPhases();
 	}
 
 	@GetMapping(value = "/phases/{pId}")
 	public PhaseBean findOne(@PathVariable(value = "pId") Long id) {
-		return microservicePhaseProxies.findOne(id);
+		return microserviceTacheProxies.findOnePhase(id);
 	}
 
 	@PostMapping(value = "/phases")
 	public PhaseBean save(@RequestBody PhaseBean pIn) {
-		return microservicePhaseProxies.save(pIn);
+		return microserviceTacheProxies.savePhase(pIn);
 	}
 
-	@DeleteMapping(value = "phases/{pId}")
+	@DeleteMapping(value = "/phases/{pId}")
 	public void delete(@PathVariable(value = "pId") Long id) {
-		microservicePhaseProxies.delete(id);
+		microserviceTacheProxies.deletePhase(id);
 	}
 
-	@PutMapping(value = "phases/{pId}")
+	@PutMapping(value = "/phases/{pId}")
 	public PhaseBean update(@PathVariable(value = "pId") Long id, @RequestBody PhaseBean pIn) {
-		return microservicePhaseProxies.update(id, pIn);
+		return microserviceTacheProxies.updatePhase(id, pIn);
 	}
 
 }
