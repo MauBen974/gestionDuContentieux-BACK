@@ -1,5 +1,6 @@
 package com.adaming.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,7 +45,8 @@ public class PhaseController {
 	}
 
 	@PostMapping(value = "/phases")
-	public PhaseDTO save(@RequestBody Phase pIn) {
+	public PhaseDTO create(@RequestBody Phase pIn) {
+		pIn.setDateFin(null);
 		return phaseMapper.convertToPhaseDTO(servPhase.save(pIn));
 	}
 
@@ -54,15 +56,34 @@ public class PhaseController {
 	}
 
 	@PutMapping(value = "phases/{pId}")
-	public PhaseDTO update(@PathVariable(value = "pId") Long id, @RequestBody Phase pIn) {
+	public PhaseDTO updateSimple(@PathVariable(value = "pId") Long id, @RequestBody Phase pIn) {
 		Phase pOut = servPhase.findOne(id);
 
-		pOut.setLibellePhase(pOut.getLibellePhase());
-		pOut.setTaches(pIn.getTaches());
+		pOut.setLibellePhase(pIn.getLibellePhase());
+		pOut.setTache(pIn.getTache());
 		pOut.setDateDebut(pIn.getDateDebut());
 		pOut.setDateFin(pIn.getDateFin());
 
 		return phaseMapper.convertToPhaseDTO(servPhase.save(pOut));
 	}
+	
+	@GetMapping(value = "/phasestermined")
+	public List<PhaseDTO> getAllNotTermined(){
+		return (List<PhaseDTO>) servPhase.getAllNotTermined().stream().map(e -> phaseMapper.convertToPhaseDTO(e))
+				.collect(Collectors.toList());
+	}
 
+	
+	@PutMapping(value = "phasesLibelle/{pId}")
+	public PhaseDTO updateLibelle(@PathVariable(value = "pId") Long id) {
+		Phase pOut = servPhase.findOne(id);
+
+		pOut.setLibellePhase(pOut.getLibellePhase());
+		pOut.setTache(pOut.getTache());
+		pOut.setDateDebut(pOut.getDateDebut());
+		pOut.setDateFin(LocalDate.now());
+
+		return phaseMapper.convertToPhaseDTO(servPhase.save(pOut));
+		//Je veux aussi créer la phase avec un new libelle
+	}
 }

@@ -90,7 +90,7 @@ public class UtilisateurServiceMockTest {
 	@Test
 	@Sql(statements = { "DELETE FROM utilisateur",
 			"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(2, 'valid@gmail.com', 'nomUser', 0)" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
-	public void readUnknownUtilisateurById_shouldReturnNull() {
+	public void readUnknownUtilisateurById_shouldReturnFalse() {
 		assertFalse(utilisateurService.findOne(3L).isPresent());
 	}
 
@@ -119,9 +119,52 @@ public class UtilisateurServiceMockTest {
 		List<Utilisateur> listAll = utilisateurService.findAll();
 		assertEquals(2, listAll.size());
 	}
+	
+	@Test
+	@Sql(statements = { "DELETE FROM utilisateur",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(2, 'valid@gmail.com', 'nomUser', 0)",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(3, 'validbis@gmail.com', 'deuxièmeNom', 1)",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(4, 'validter@gmail.com', 'troisièmeNom', 1)"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+	public void readAllUtilisateurWithArchiveFalseWithData_shouldReturnSize() {
+		List<Utilisateur> listAll = utilisateurService.findAllIfArchiveFalse();
+		assertEquals(1, listAll.size());
+	}
 
-	// DELETE JE SAIS PAS FAIRE AVEC CE PUTAIN DE VOID
-	// LA METHODE CREATE EST PAS SECURE DONC JE PEUX SAVE DES UTILISATEUR DEJA
-	// PRESENT
+	@Test
+	@Sql(statements = { "DELETE FROM utilisateur",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, password, archive)VALUES(2, 'valid@gmail.com', 'nomUser', 'passwordtest', 0)" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+	public void authentificationTestWithValidUtilisateur_shouldReturnThisUtilisateur() {
+		Utilisateur utilisateur = utilisateurService.authentification("valid@gmail.com", "passwordtest").get();
+		assertEquals("nomUser", utilisateur.getNom());
+		assertEquals("valid@gmail.com", utilisateur.getEmail());
+		assertEquals(false, utilisateur.isArchive());
+	}
+	
+	@Test
+	@Sql(statements = { "DELETE FROM utilisateur",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, password, archive)VALUES(2, 'valid@gmail.com', 'nomUser', 'passwordtest', 0)" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+	public void authentificationTestWithUnknownUtilisateur_shouldReturnFalse() {
+		assertFalse(utilisateurService.authentification("aa@aa.fr", "passwordtest").isPresent());
+	}
 
+	@Test
+	@Sql(statements = { "DELETE FROM utilisateur",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, password, archive)VALUES(2, 'valid@gmail.com', 'nomUser', 'passwordtest', 0)",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(3, 'validbis@gmail.com', 'deuxièmeNom', 1)"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+	public void archiveUtilisateurWithNotArchivedOne_shouldReturnUtilisateurArchive() {
+		Utilisateur utilisateur = utilisateurService.archiveUtilisateur(2L);
+		assertEquals(true, utilisateur.isArchive());
+		assertEquals("nomUser", utilisateur.getNom());
+	}
+	
+	@Test
+	@Sql(statements = { "DELETE FROM utilisateur",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, password, archive)VALUES(2, 'valid@gmail.com', 'nomUser', 'passwordtest', 0)",
+			"Insert INTO utilisateur (id_utilisateur, email, nom, archive)VALUES(3, 'validbis@gmail.com', 'deuxièmeNom', 1)"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+	public void archiveUtilisateurWithArchivedOne_shouldReturnThisUtilisateur() {
+		Utilisateur utilisateur = utilisateurService.archiveUtilisateur(3L);
+		assertEquals(true, utilisateur.isArchive());
+		assertEquals("deuxièmeNom", utilisateur.getNom());
+	}
+	
 }

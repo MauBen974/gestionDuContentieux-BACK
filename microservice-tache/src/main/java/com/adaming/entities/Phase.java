@@ -1,14 +1,14 @@
 package com.adaming.entities;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @author VITTOZ Guillaume
@@ -24,11 +24,12 @@ public class Phase implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPhase;
-	private Enum<LibellePhase> libellePhase;
-	private Date dateDebut;
-	private Date dateFin;
-	@ManyToMany(mappedBy = "phases")
-	private List<Tache> taches;
+	private String libellePhase;
+	private LocalDate dateDebut;
+	private LocalDate dateFin;
+	@ManyToOne
+	@JoinColumn(name = "idTache")
+	private Tache tache;
 
 	public Long getIdPhase() {
 		return idPhase;
@@ -38,36 +39,36 @@ public class Phase implements Serializable {
 		this.idPhase = idPhase;
 	}
 
-	public Enum<LibellePhase> getLibellePhase() {
+	public String getLibellePhase() {
 		return libellePhase;
 	}
 
-	public void setLibellePhase(Enum<LibellePhase> libellePhase) {
+	public void setLibellePhase(String libellePhase) {
 		this.libellePhase = libellePhase;
 	}
 
-	public Date getDateDebut() {
+	public LocalDate getDateDebut() {
 		return dateDebut;
 	}
 
-	public void setDateDebut(Date dateDebut) {
+	public void setDateDebut(LocalDate dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
-	public Date getDateFin() {
+	public LocalDate getDateFin() {
 		return dateFin;
 	}
 
-	public void setDateFin(Date dateFin) {
+	public void setDateFin(LocalDate dateFin) {
 		this.dateFin = dateFin;
 	}
 
-	public List<Tache> getTaches() {
-		return taches;
+	public Tache getTache() {
+		return tache;
 	}
 
-	public void setTaches(List<Tache> taches) {
-		this.taches = taches;
+	public void setTache(Tache tache) {
+		this.tache = tache;
 	}
 
 	public static long getSerialversionuid() {
@@ -77,11 +78,20 @@ public class Phase implements Serializable {
 	@Override
 	public String toString() {
 		return "Phase [idPhase=" + idPhase + ", libellePhase=" + libellePhase + ", dateDebut=" + dateDebut
-				+ ", dateFin=" + dateFin + ", taches=" + taches + "]";
+				+ ", dateFin=" + dateFin + ", tache=" + tache + "]";
 	}
 
 	public Phase() {
 		super();
+	}
+
+	public Phase(Long idPhase, String libellePhase, LocalDate dateDebut, LocalDate dateFin, Tache tache) {
+		super();
+		this.idPhase = idPhase;
+		this.libellePhase = libellePhase;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.tache = tache;
 	}
 
 }

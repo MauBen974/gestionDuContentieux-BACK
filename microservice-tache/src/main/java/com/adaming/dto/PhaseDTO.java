@@ -1,9 +1,7 @@
 package com.adaming.dto;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
-import com.adaming.entities.LibellePhase;
 import com.adaming.entities.Tache;
 
 /**
@@ -13,10 +11,10 @@ import com.adaming.entities.Tache;
 public class PhaseDTO {
 
 	private Long idPhase;
-	private Enum<LibellePhase> libellePhase;
-	private Date dateDebut;
-	private Date dateFin;
-	private List<Tache> taches;
+	private String libellePhase;
+	private LocalDate dateDebut;
+	private LocalDate dateFin;
+	private Tache tache;
 
 	public Long getIdPhase() {
 		return idPhase;
@@ -26,45 +24,45 @@ public class PhaseDTO {
 		this.idPhase = idPhase;
 	}
 
-	public Enum<LibellePhase> getLibellePhase() {
+	public String getLibellePhase() {
 		return libellePhase;
 	}
 
-	public void setLibellePhase(Enum<LibellePhase> libellePhase) {
+	public void setLibellePhase(String libellePhase) {
 		this.libellePhase = libellePhase;
 	}
 
-	public Date getDateDebut() {
+	public LocalDate getDateDebut() {
 		return dateDebut;
 	}
 
-	public void setDateDebut(Date dateDebut) {
+	public void setDateDebut(LocalDate dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
-	public Date getDateFin() {
+	public LocalDate getDateFin() {
 		return dateFin;
 	}
 
-	public void setDateFin(Date dateFin) {
+	public void setDateFin(LocalDate dateFin) {
 		this.dateFin = dateFin;
 	}
 
-	public List<Tache> getTaches() {
-		return taches;
+	public Tache getTache() {
+		return tache;
 	}
 
-	public void setTaches(List<Tache> taches) {
-		this.taches = taches;
+	public void setTache(Tache tache) {
+		this.tache = tache;
 	}
 
-	public PhaseDTO(Long idPhase, Enum<LibellePhase> libellePhase, Date dateDebut, Date dateFin, List<Tache> taches) {
+	public PhaseDTO(Long idPhase, String libellePhase, LocalDate dateDebut, LocalDate dateFin, Tache tache) {
 		super();
 		this.idPhase = idPhase;
 		this.libellePhase = libellePhase;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.taches = taches;
+		this.tache = tache;
 	}
 
 	public PhaseDTO() {
@@ -74,7 +72,7 @@ public class PhaseDTO {
 	@Override
 	public String toString() {
 		return "PhaseDTO [idPhase=" + idPhase + ", libellePhase=" + libellePhase + ", dateDebut=" + dateDebut
-				+ ", dateFin=" + dateFin + ", taches=" + taches + "]";
+				+ ", dateFin=" + dateFin + ", tache=" + tache + "]";
 	}
 
 }

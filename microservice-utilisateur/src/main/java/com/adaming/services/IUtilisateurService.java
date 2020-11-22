@@ -14,6 +14,6 @@ public interface IUtilisateurService {
 	Utilisateur saveUtilisateur(Utilisateur utilisateur);
 	void deleteUtilisateur(Long id);
 	Utilisateur archiveUtilisateur(Long id);
-	Optional<Utilisateur> authentification(String username, String password);
+	Optional<Utilisateur> authentification(String email, String password);
 	
 }

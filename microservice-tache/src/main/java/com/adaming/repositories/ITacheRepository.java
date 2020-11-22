@@ -18,11 +18,11 @@ public interface ITacheRepository extends JpaRepository<Tache, Long> {
 
 //	public List<Tache> findByUtilisateur(Utilisateur utilisateur);
 
-	@Query(value = "SELECT * FROM tache WHERE tache.idTache=Tache_Phase.idTache INNER JOIN Tache_Phase.idPhase = phase.idPhase AND phase.libellePhase = :libellePhase", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT * FROM tache, phase WHERE tache.id_tache = phase.id_tache AND phase.libelle_phase = :libellePhase", nativeQuery = true)
 	public List<Tache> findBylibellePhase(@Param(value = "libellePhase") String libellePhase);
 
-	@Query(value = "SELECT * FROM tache WHERE statusAudience = :statusAudience", nativeQuery = true)
+	@Query(value = "SELECT * FROM tache WHERE status_audience = :statusAudience", nativeQuery = true)
 	public List<Tache> findByStatusAudience(@Param(value = "statusAudience") Boolean statusAudience);
 	
-	
+	// Update phase d'une tache
 }

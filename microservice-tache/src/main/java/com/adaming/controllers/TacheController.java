@@ -61,7 +61,6 @@ public class TacheController {
 		tOut.setDescriptionTache(tIn.getDescriptionTache());
 		tOut.setDateCreation(tIn.getDateCreation());
 		tOut.setStatusAudience(tIn.getStatusAudience());
-		tOut.setPhases(tIn.getPhases());
 
 		return tacheMapper.convertToTacheDTO(servTache.save(tOut));
 	}

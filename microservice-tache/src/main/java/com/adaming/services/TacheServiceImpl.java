@@ -2,6 +2,8 @@ package com.adaming.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class TacheServiceImpl implements ITacheService {
 	}
 
 	@Override
+	@Transactional
 	public Tache findOne(Long id) {
 		return repoTache.getOne(id);
 	}

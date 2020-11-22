@@ -1,19 +1,12 @@
 package com.adaming.entities;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * @author VITTOZ Guillaume
@@ -29,19 +22,13 @@ public class Tache implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTache;
-	@Temporal(TemporalType.DATE)
-	private Date dateCreation;
+	private LocalDate dateCreation;
 	private String titreTache;
 	private String descriptionTache;
 	private Boolean statusAudience;
 
 	private Long idUtilisateur;
 	private Long idTribunal;
-
-	@ManyToMany
-	@JoinTable(name = "Tache_Phase", joinColumns = { @JoinColumn(name = "idTache") }, inverseJoinColumns = {
-			@JoinColumn(name = "idPhase") })
-	private List<Phase> phases;
 
 	public Long getIdTache() {
 		return idTache;
@@ -51,11 +38,11 @@ public class Tache implements Serializable {
 		this.idTache = idTache;
 	}
 
-	public Date getDateCreation() {
+	public LocalDate getDateCreation() {
 		return dateCreation;
 	}
 
-	public void setDateCreation(Date dateCreation) {
+	public void setDateCreation(LocalDate dateCreation) {
 		this.dateCreation = dateCreation;
 	}
 
@@ -99,14 +86,6 @@ public class Tache implements Serializable {
 		this.idTribunal = idTribunal;
 	}
 
-	public List<Phase> getPhases() {
-		return phases;
-	}
-
-	public void setPhases(List<Phase> phases) {
-		this.phases = phases;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -115,11 +94,23 @@ public class Tache implements Serializable {
 	public String toString() {
 		return "Tache [idTache=" + idTache + ", dateCreation=" + dateCreation + ", titreTache=" + titreTache
 				+ ", descriptionTache=" + descriptionTache + ", statusAudience=" + statusAudience + ", idUtilisateur="
-				+ idUtilisateur + ", idTribunal=" + idTribunal + ", phases=" + phases + "]";
+				+ idUtilisateur + ", idTribunal=" + idTribunal + "]";
 	}
 
 	public Tache() {
 		super();
+	}
+
+	public Tache(Long idTache, LocalDate dateCreation, String titreTache, String descriptionTache,
+			Boolean statusAudience, Long idUtilisateur, Long idTribunal) {
+		super();
+		this.idTache = idTache;
+		this.dateCreation = dateCreation;
+		this.titreTache = titreTache;
+		this.descriptionTache = descriptionTache;
+		this.statusAudience = statusAudience;
+		this.idUtilisateur = idUtilisateur;
+		this.idTribunal = idTribunal;
 	}
 
 }
