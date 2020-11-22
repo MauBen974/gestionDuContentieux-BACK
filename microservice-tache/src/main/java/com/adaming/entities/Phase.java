@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author VITTOZ Guillaume
  *
@@ -24,12 +26,14 @@ public class Phase implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPhase;
+
 	private String libellePhase;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
 	@ManyToOne
 	@JoinColumn(name = "idTache")
 	private Tache tache;
+
 
 	public Long getIdPhase() {
 		return idPhase;
