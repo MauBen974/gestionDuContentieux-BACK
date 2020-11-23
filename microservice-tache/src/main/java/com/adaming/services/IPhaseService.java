@@ -21,7 +21,7 @@ public interface IPhaseService {
 
 	void delete(Long id);
 
-	Phase update(Long id, Phase pIn);
+//	Phase update(Long id, Phase pIn);
 
 	List<Phase> findByTache(Tache tache);
 }
