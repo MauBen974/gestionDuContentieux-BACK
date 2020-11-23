@@ -56,4 +56,9 @@ public class TacheServiceImpl implements ITacheService {
 		return repoTache.findByIdUtilisateur(id);
 	}
 
+	@Override
+	public List<Tache> findByIdTribunal(Long id) {
+		return repoTache.findByIdTribunal(id);
+	}
+
 }

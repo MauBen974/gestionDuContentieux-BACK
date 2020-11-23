@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adaming.beans.TacheBean;
-
 import com.adaming.proxies.MicroServiceTacheProxies;
 
 @RestController
@@ -56,5 +55,15 @@ public class TacheController {
 	@GetMapping(value = "tachesAudience/{statusAudience}")
 	public List<TacheBean> findByStatusAudience(@PathVariable(value = "statusAudience") Boolean statusAudience) {
 		return microserviceTacheProxies.findTacheByStatusAudience(statusAudience);
+	}
+	
+	@GetMapping(value = "tachesUtilisateur/{idUtilisateur}")
+	public List<TacheBean> findByIdUtilisateur(@PathVariable(value = "idUtilisateur") Long idUtilisateur) {
+		return microserviceTacheProxies.findByIdUtilisateur(idUtilisateur);
+	}
+	
+	@GetMapping(value = "tachesTribunal/{idTribunal}")
+	public List<TacheBean> findByIdTribunal(@PathVariable(value = "idTribunal") Long idTribunal) {
+		return microserviceTacheProxies.findByIdTribunal(idTribunal);
 	}
 }

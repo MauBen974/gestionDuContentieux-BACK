@@ -1,7 +1,9 @@
 package com.adaming.proxies;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,11 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.adaming.beans.AffaireBean;
+import com.adaming.beans.DocumentBean;
 import com.adaming.beans.PhaseBean;
 import com.adaming.beans.TacheBean;
 
 @FeignClient(name = "microservice-tache")
-//@RibbonClient(name = "microservice-tache")
+@RibbonClient(name = "microservice-tache")
 public interface MicroServiceTacheProxies {
 	
 	@GetMapping(value = "/phases")
@@ -52,5 +56,52 @@ public interface MicroServiceTacheProxies {
 
 	@GetMapping(value = "tachesAudience/{statusAudience}")
 	public List<TacheBean> findTacheByStatusAudience(@PathVariable(value = "statusAudience") Boolean statusAudience);
+	
+	@GetMapping(value = "tachesUtilisateur/{idUtilisateur}")
+	public List<TacheBean> findByIdUtilisateur(@PathVariable(value = "idUtilisateur") Long idUtilisateur);
+	
+	@GetMapping(value = "tachesTribunal/{idTribunal}")
+	public List<TacheBean> findByIdTribunal(@PathVariable(value = "idTribunal") Long idTribunal);
+
+	@GetMapping("/document")
+	public List<DocumentBean> findAllDocument();
+
+	@GetMapping("/document/{id}")
+	public Optional<DocumentBean> findOneDocument(@PathVariable Long id) ;
+	
+	@GetMapping("/chercherDocParAffaire/{codeaff}")
+	public List<DocumentBean> chercherDocParAffaire(@PathVariable(value="codeaff") AffaireBean codeaff);
+	
+	@GetMapping(value = "/docNonArchive/{nonArchive}")
+	public List<DocumentBean> findIfArchiveFalse(@PathVariable(value="nonArchive") Boolean nonArchive);
+
+	@PostMapping("/document")
+	public DocumentBean save(@RequestBody DocumentBean document) ;
+
+	@PutMapping("/document/{id}")
+	public DocumentBean MiseAJour(@PathVariable Long id,@RequestBody DocumentBean d);
+	
+	@DeleteMapping("/document/{id}")
+	public String delete(@PathVariable Long id);
+
+
+	@GetMapping("/affaire")
+	public List<AffaireBean> findAllAffaire();
+
+	@GetMapping("/affaire/{id}")
+	public Optional<AffaireBean> findOneAffaire(@PathVariable Long id);
+	
+	@GetMapping("/affaireParStatus/{quelstatus}")
+	public List<AffaireBean> findByStatus(@PathVariable String quelstatus);
+
+	@PostMapping("/affaire")
+	public AffaireBean save(@RequestBody AffaireBean affaire);
+	
+	@PutMapping("/affaire/{id}")
+	public AffaireBean MiseAJour(@PathVariable Long id,@RequestBody AffaireBean a);
+
+	@DeleteMapping("/affaire/{id}")
+	public String deleteAffaire(@PathVariable Long id);
 
 }
+

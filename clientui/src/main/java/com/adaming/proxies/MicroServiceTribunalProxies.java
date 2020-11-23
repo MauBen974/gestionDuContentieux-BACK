@@ -3,6 +3,7 @@ package com.adaming.proxies;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.adaming.beans.TribunalBean;
 
 @FeignClient(name = "microservice-tribunal")
-//@RibbonClient(name = "microservice-tribunal")
+@RibbonClient(name = "microservice-tribunal")
 public interface MicroServiceTribunalProxies {
 	
 	 @GetMapping("/tribunal")

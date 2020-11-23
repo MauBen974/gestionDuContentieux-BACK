@@ -1,30 +1,25 @@
 package com.adaming.beans;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 public class PhaseBean {
 
 	private Long idPhase;
-
-	private Enum<LibellePhaseBean> libellePhase;
-
-	private Date dateDebut;
-
-	private Date dateFin;
-
-	private List<TacheBean> taches;
+	private String libellePhase;
+	private LocalDate dateDebut;
+	private LocalDate dateFin;
+	private TacheBean tache;
 
 	public PhaseBean() {
 		super();
 	}
 
-	public PhaseBean(Enum<LibellePhaseBean> libellePhase, Date dateDebut, Date dateFin, List<TacheBean> taches) {
+	public PhaseBean(String libellePhase, LocalDate dateDebut, LocalDate dateFin, TacheBean tache) {
 		super();
 		this.libellePhase = libellePhase;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.taches = taches;
+		this.tache = tache;
 	}
 
 	public Long getIdPhase() {
@@ -35,36 +30,36 @@ public class PhaseBean {
 		this.idPhase = idPhase;
 	}
 
-	public Enum<LibellePhaseBean> getLibellePhase() {
+	public String getLibellePhase() {
 		return libellePhase;
 	}
 
-	public void setLibellePhase(Enum<LibellePhaseBean> libellePhase) {
+	public void setLibellePhase(String libellePhase) {
 		this.libellePhase = libellePhase;
 	}
 
-	public Date getDateDebut() {
+	public LocalDate getDateDebut() {
 		return dateDebut;
 	}
 
-	public void setDateDebut(Date dateDebut) {
+	public void setDateDebut(LocalDate dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
-	public Date getDateFin() {
+	public LocalDate getDateFin() {
 		return dateFin;
 	}
 
-	public void setDateFin(Date dateFin) {
+	public void setDateFin(LocalDate dateFin) {
 		this.dateFin = dateFin;
 	}
 
-	public List<TacheBean> getTaches() {
-		return taches;
+	public TacheBean getTache() {
+		return tache;
 	}
 
-	public void setTaches(List<TacheBean> taches) {
-		this.taches = taches;
+	public void setTache(TacheBean tache) {
+		this.tache = tache;
 	}
 
 }
