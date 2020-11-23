@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.adaming.entities.Phase;
+import com.adaming.entities.Tache;
 import com.adaming.repositories.IPhaseRepository;
 
 /**
@@ -56,6 +57,13 @@ public class PhaseServiceImpl implements IPhaseService {
 		
 		return pOut;
 	}
+
+	@Override
+	public List<Phase> findByTache(Tache tache) {
+		return repoPhase.findByTache(tache);
+	}
+	
+	
 	
 	
 }
