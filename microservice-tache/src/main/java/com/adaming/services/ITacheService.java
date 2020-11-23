@@ -25,4 +25,6 @@ public interface ITacheService {
 
 	List<Tache> findByStatusAudience(Boolean statusAudience);
 	
+	List<Tache> findByIdUtilisateur(Long id);
+	
 }

@@ -3,6 +3,7 @@ package com.adaming.services;
 import java.util.List;
 
 import com.adaming.entities.Phase;
+import com.adaming.entities.Tache;
 
 /**
  * @author VITTOZ Guillaume
@@ -11,7 +12,7 @@ import com.adaming.entities.Phase;
 public interface IPhaseService {
 
 	List<Phase> getAll();
-	
+
 	List<Phase> getAllNotTermined();
 
 	Phase findOne(Long id);
@@ -19,6 +20,8 @@ public interface IPhaseService {
 	Phase save(Phase pIn);
 
 	void delete(Long id);
-	
+
 	Phase update(Long id, Phase pIn);
+
+	List<Phase> findByTache(Tache tache);
 }
