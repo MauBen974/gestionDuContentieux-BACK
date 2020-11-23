@@ -27,4 +27,6 @@ public interface ITacheService {
 	
 	List<Tache> findByIdUtilisateur(Long id);
 	
+	List<Tache> findByIdTribunal(Long id);
+	
 }

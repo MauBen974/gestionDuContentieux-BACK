@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adaming.beans.TacheBean;
 import com.adaming.beans.UtilisateurBean;
+import com.adaming.proxies.MicroServiceTacheProxies;
 import com.adaming.proxies.MicroServiceUtilisateurProxies;
 
 @RestController
@@ -22,10 +24,18 @@ public class UtilisateurController {
 
 	@Autowired
 	private MicroServiceUtilisateurProxies microserviceUtilisateurProxies;
+	@Autowired
+	private MicroServiceTacheProxies microserviceTacheProxies;
 
 	@GetMapping("/utilisateurs")
 	public List<UtilisateurBean> findIfArchiveFalse() {
 		return microserviceUtilisateurProxies.findIfArchiveFalse();
+	}
+	
+	@GetMapping("/utilisateursTaches/{id}")
+	public List<TacheBean> findTacheByUser(@PathVariable (name = "id") Long id) {
+		UtilisateurBean utilisateur = microserviceUtilisateurProxies.findOne(id).get();
+		return microserviceTacheProxies.findByIdUtilisateur(utilisateur.getIdUtilisateur());
 	}
 
 	@GetMapping("/utilisateurs-archives")

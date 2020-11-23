@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adaming.beans.TacheBean;
 import com.adaming.beans.TribunalBean;
+import com.adaming.proxies.MicroServiceTacheProxies;
 import com.adaming.proxies.MicroServiceTribunalProxies;
 
 @RestController
@@ -21,6 +23,8 @@ public class TribunalController {
 
 	@Autowired
 	private MicroServiceTribunalProxies microserviceTribunalProxies;
+	@Autowired
+	private MicroServiceTacheProxies microserviceTacheProxies;
 
 	@GetMapping("/tribunal")
 	public List<TribunalBean> findAll() {
@@ -35,6 +39,12 @@ public class TribunalController {
 	@GetMapping("/tribunalArchive")
 	public List<TribunalBean> findAllArchiveTrue() {
 		return microserviceTribunalProxies.findAllArchiveTrue();
+	}
+	
+	@GetMapping("/tribunalTaches/{id}")
+	public List<TacheBean> findTacheByTribunal(@PathVariable (name = "id") Long id) {
+		TribunalBean tribunal = microserviceTribunalProxies.findOne(id).get();
+		return microserviceTacheProxies.findByIdTribunal(tribunal.getIdTribunal());
 	}
 
 	@GetMapping("/tribunal/{id}")
