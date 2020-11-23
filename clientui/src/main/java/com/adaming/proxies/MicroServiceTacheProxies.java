@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.adaming.beans.PhaseBean;
 import com.adaming.beans.TacheBean;
+import com.adaming.beans.DocumentBean;
+import com.adaming.beans.AffaireBean;
 
 @FeignClient(name = "microservice-tache")
 //@RibbonClient(name = "microservice-tache")
@@ -52,5 +54,46 @@ public interface MicroServiceTacheProxies {
 
 	@GetMapping(value = "tachesAudience/{statusAudience}")
 	public List<TacheBean> findTacheByStatusAudience(@PathVariable(value = "statusAudience") Boolean statusAudience);
+	
+	
+	@GetMapping("/document")
+	public List<DocumentBean> findAll();
+
+	@GetMapping("/document/{id}")
+	public Optional<DocumentBean> findOne(@PathVariable Long id) ;
+	
+	@GetMapping("/chercherDocParAffaire/{codeaff}")
+	public List<DocumentBean> chercherDocParAffaire(@PathVariable(value="codeaff") Affaire codeaff);
+	
+	@GetMapping(value = "/docNonArchive/{nonArchive}")
+	public List<DocumentBean> findIfArchiveFalse(@PathVariable(value="nonArchive") Boolean nonArchive);
+
+	@PostMapping("/document")
+	public DocumentBean save(@RequestBody Document document) ;
+
+	@PutMapping("/document/{id}")
+	public DocumentBean MiseAJour(@PathVariable Long id,@RequestBody Document d);
+	
+	@DeleteMapping("/document/{id}")
+	public String delete(@PathVariable Long id);
+
+
+	@GetMapping("/affaire")
+	public List<AffaireBean> findAll();
+
+	@GetMapping("/affaire/{id}")
+	public Optional<AffaireBean> findOne(@PathVariable Long id);
+	
+	@GetMapping("/affaireParStatus/{quelstatus}")
+	public List<AffaireBean> findByStatus(@PathVariable String quelstatus);
+
+	@PostMapping("/affaire")
+	public AffaireBean save(@RequestBody Affaire affaire);
+	
+	@PutMapping("/affaire/{id}")
+	public AffaireBean MiseAJour(@PathVariable Long id,@RequestBody Affaire a);
+
+	@DeleteMapping("/affaire/{id}")
+	public String delete(@PathVariable Long id);
 
 }
