@@ -82,4 +82,10 @@ public class TacheController {
 		return (List<TacheDTO>) servTache.findByIdUtilisateur(idUtilisateur).stream()
 				.map(e -> tacheMapper.convertToTacheDTO(e)).collect(Collectors.toList());
 	}
+	
+	@GetMapping(value = "tachesTribunal/{idTribunal}")
+	public List<TacheDTO> findByIdTribunal(@PathVariable(value = "idTribunal") Long idTribunal) {
+		return (List<TacheDTO>) servTache.findByIdTribunal(idTribunal).stream()
+				.map(e -> tacheMapper.convertToTacheDTO(e)).collect(Collectors.toList());
+	}
 }

@@ -1,32 +1,24 @@
 package com.adaming.beans;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 public class TacheBean {
 
 	private Long idTache;
-
-	private Date dateCreation;
-
+	private LocalDate dateCreation;
 	private String titreTache;
-
 	private String descriptionTache;
-
 	private Boolean statusAudience;
 
 	private Long idUtilisateur;
-
 	private Long idTribunal;
-
-	private List<PhaseBean> phases;
 
 	public TacheBean() {
 		super();
 	}
 
-	public TacheBean(Date dateCreation, String titreTache, String descriptionTache, Boolean statusAudience,
-			Long idUtilisateur, Long idTribunal, List<PhaseBean> phases) {
+	public TacheBean(LocalDate dateCreation, String titreTache, String descriptionTache, Boolean statusAudience,
+			Long idUtilisateur, Long idTribunal) {
 		super();
 		this.dateCreation = dateCreation;
 		this.titreTache = titreTache;
@@ -34,7 +26,6 @@ public class TacheBean {
 		this.statusAudience = statusAudience;
 		this.idUtilisateur = idUtilisateur;
 		this.idTribunal = idTribunal;
-		this.phases = phases;
 	}
 
 	public Long getIdTache() {
@@ -45,11 +36,11 @@ public class TacheBean {
 		this.idTache = idTache;
 	}
 
-	public Date getDateCreation() {
+	public LocalDate getDateCreation() {
 		return dateCreation;
 	}
 
-	public void setDateCreation(Date dateCreation) {
+	public void setDateCreation(LocalDate dateCreation) {
 		this.dateCreation = dateCreation;
 	}
 
@@ -91,14 +82,6 @@ public class TacheBean {
 
 	public void setIdTribunal(Long idTribunal) {
 		this.idTribunal = idTribunal;
-	}
-
-	public List<PhaseBean> getPhases() {
-		return phases;
-	}
-
-	public void setPhases(List<PhaseBean> phases) {
-		this.phases = phases;
 	}
 
 }

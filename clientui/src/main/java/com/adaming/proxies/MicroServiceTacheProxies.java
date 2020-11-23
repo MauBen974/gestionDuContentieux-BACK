@@ -52,5 +52,11 @@ public interface MicroServiceTacheProxies {
 
 	@GetMapping(value = "tachesAudience/{statusAudience}")
 	public List<TacheBean> findTacheByStatusAudience(@PathVariable(value = "statusAudience") Boolean statusAudience);
+	
+	@GetMapping(value = "tachesUtilisateur/{idUtilisateur}")
+	public List<TacheBean> findByIdUtilisateur(@PathVariable(value = "idUtilisateur") Long idUtilisateur);
+	
+	@GetMapping(value = "tachesTribunal/{idTribunal}")
+	public List<TacheBean> findByIdTribunal(@PathVariable(value = "idTribunal") Long idTribunal);
 
 }
