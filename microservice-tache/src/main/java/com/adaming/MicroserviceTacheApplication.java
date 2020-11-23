@@ -7,9 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+<<<<<<< HEAD
 import com.adaming.entities.Affaire;
 import com.adaming.entities.Document;
+=======
+@SpringBootApplication
+@EnableSwagger2
+@EnableDiscoveryClient
+public class MicroserviceTacheApplication {
+>>>>>>> b78c79aa5abda034ad6d4f3b08bab01f7dac0bd2
 
 import com.adaming.services.IAffaireService;
 import com.adaming.services.IDocumentService;
