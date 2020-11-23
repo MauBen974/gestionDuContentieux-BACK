@@ -42,19 +42,19 @@ public class TribunalServiceMockTest {
 
 		Tribunal retour = tribunalService.save(tribunal);
 		assertNotNull(retour);
-		assertEquals(retour.getEmail(), "valid@gmail.com");
+		assertEquals("test email", retour.getEmail());
 		assertFalse(retour.isArchive());
 	}
 
 	@Test
 	@Sql(statements = { "DELETE FROM tribunal",
-			"Insert INTO tribunal (idTribunal, adresse, email, tel, region, nomTribunal, archive)"
+			"Insert INTO tribunal (id_tribunal, adresse, email, tel, region, nom_tribunal, archive)"
 					+ "VALUES(2,'adressetest', 'valid@gmail.com',123456,'region test', 'nom tribunal test', 0)" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 	public void readValidTribunalById_shouldReturnThisTribunal() {
 		Tribunal tribunal = tribunalService.findById(2l).get();
 		assertEquals("adressetest", tribunal.getAdresse());
 		assertEquals("valid@gmail.com", tribunal.getEmail());
-		assertEquals(132456, tribunal.getTel());
+		assertEquals(123456, tribunal.getTel());
 		assertEquals("region test", tribunal.getRegion());
 		assertEquals("nom tribunal test", tribunal.getNomTribunal());
 		assertFalse(tribunal.isArchive());
@@ -62,7 +62,7 @@ public class TribunalServiceMockTest {
 
 	@Test
 	@Sql(statements = { "DELETE FROM tribunal",
-			"Insert INTO tribunal (idTribunal, adresse, email, tel, region, nomTribunal, archive)"
+			"Insert INTO tribunal (id_tribunal, adresse, email, tel, region, nom_tribunal, archive)"
 					+ "VALUES(2,'adressetest', 'valid@gmail.com',123456,'region test', 'nom tribunal test', 0)" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 	public void readUnknownTribunalById_shouldReturnFalse() {
 		assertFalse(tribunalService.findById(3l).isPresent());
@@ -77,10 +77,10 @@ public class TribunalServiceMockTest {
 
 	@Test
 	@Sql(statements = { "DELETE FROM tribunal",
-			"Insert INTO tribunal (idTribunal, adresse, email, tel, region, nomTribunal, archive)"
-					+ "VALUES(2,'adressetest', 'valid@gmail.com',123456,'region test', 'nom tribunal test', 0)",
-			"Insert INTO tribunal (idTribunal, adresse, email, tel, region, nomTribunal, archive)"
-					+ "VALUES(2,'adressetest2', 'second@gmail.com',741852,'deuxieme region test', 'deuxieme nom tribunal test', 0)" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+			"Insert INTO tribunal (id_tribunal, adresse, email, tel, region, nom_tribunal, archive)"
+					+ "VALUES(2,'adressetest', 'valid@gmail.com',00000,'region test', 'nom tribunal test', 0)",
+			"Insert INTO tribunal (id_tribunal, adresse, email, tel, region, nom_tribunal, archive)"
+					+ "VALUES(3,'adressetest2', 'second@gmail.com',741852,'deuxieme region test', 'deuxieme nom tribunal test', 0)" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 	public void readAllTribunalWithData_shouldReturnSize() {
 		List<Tribunal> listAll = tribunalService.findAll();
 		assertEquals(2, listAll.size());
