@@ -3,6 +3,7 @@ package com.adaming.proxies;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import com.adaming.beans.PhaseBean;
 import com.adaming.beans.TacheBean;
 
 @FeignClient(name = "microservice-tache")
-//@RibbonClient(name = "microservice-tache")
+@RibbonClient(name = "microservice-tache")
 public interface MicroServiceTacheProxies {
 	
 	@GetMapping(value = "/phases")
