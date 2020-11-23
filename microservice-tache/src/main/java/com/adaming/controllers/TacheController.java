@@ -76,4 +76,10 @@ public class TacheController {
 		return (List<TacheDTO>) servTache.findByStatusAudience(statusAudience).stream()
 				.map(e -> tacheMapper.convertToTacheDTO(e)).collect(Collectors.toList());
 	}
+	
+	@GetMapping(value = "tachesUtilisateur/{idUtilisateur}")
+	public List<TacheDTO> findByIdUtilisateur(@PathVariable(value = "idUtilisateur") Long idUtilisateur) {
+		return (List<TacheDTO>) servTache.findByIdUtilisateur(idUtilisateur).stream()
+				.map(e -> tacheMapper.convertToTacheDTO(e)).collect(Collectors.toList());
+	}
 }

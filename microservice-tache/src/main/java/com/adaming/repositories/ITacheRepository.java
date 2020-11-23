@@ -16,7 +16,7 @@ import com.adaming.entities.Tache;
 @Repository
 public interface ITacheRepository extends JpaRepository<Tache, Long> {
 
-//	public List<Tache> findByIdUtilisateur(Long utilisateur);
+	public List<Tache> findByIdUtilisateur(Long utilisateur);
 
 	@Query(value = "SELECT DISTINCT * FROM tache, phase WHERE tache.id_tache = phase.id_tache AND phase.libelle_phase = :libellePhase", nativeQuery = true)
 	public List<Tache> findBylibellePhase(@Param(value = "libellePhase") String libellePhase);
