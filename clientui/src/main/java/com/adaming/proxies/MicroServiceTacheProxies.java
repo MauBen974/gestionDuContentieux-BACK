@@ -59,4 +59,45 @@ public interface MicroServiceTacheProxies {
 	@GetMapping(value = "tachesTribunal/{idTribunal}")
 	public List<TacheBean> findByIdTribunal(@PathVariable(value = "idTribunal") Long idTribunal);
 
+	@GetMapping("/document")
+	public List<DocumentBean> findAllDocument();
+
+	@GetMapping("/document/{id}")
+	public Optional<DocumentBean> findOneDocument(@PathVariable Long id) ;
+	
+	@GetMapping("/chercherDocParAffaire/{codeaff}")
+	public List<DocumentBean> chercherDocParAffaire(@PathVariable(value="codeaff") AffaireBean codeaff);
+	
+	@GetMapping(value = "/docNonArchive/{nonArchive}")
+	public List<DocumentBean> findIfArchiveFalse(@PathVariable(value="nonArchive") Boolean nonArchive);
+
+	@PostMapping("/document")
+	public DocumentBean save(@RequestBody DocumentBean document) ;
+
+	@PutMapping("/document/{id}")
+	public DocumentBean MiseAJour(@PathVariable Long id,@RequestBody DocumentBean d);
+	
+	@DeleteMapping("/document/{id}")
+	public String delete(@PathVariable Long id);
+
+
+	@GetMapping("/affaire")
+	public List<AffaireBean> findAllAffaire();
+
+	@GetMapping("/affaire/{id}")
+	public Optional<AffaireBean> findOneAffaire(@PathVariable Long id);
+	
+	@GetMapping("/affaireParStatus/{quelstatus}")
+	public List<AffaireBean> findByStatus(@PathVariable String quelstatus);
+
+	@PostMapping("/affaire")
+	public AffaireBean save(@RequestBody AffaireBean affaire);
+	
+	@PutMapping("/affaire/{id}")
+	public AffaireBean MiseAJour(@PathVariable Long id,@RequestBody AffaireBean a);
+
+	@DeleteMapping("/affaire/{id}")
+	public String deleteAffaire(@PathVariable Long id);
+
 }
+

@@ -32,7 +32,6 @@ public class Phase implements Serializable {
 	@JoinColumn(name = "idTache")
 	private Tache tache;
 
-
 	public Long getIdPhase() {
 		return idPhase;
 	}
@@ -90,6 +89,14 @@ public class Phase implements Serializable {
 	public Phase(Long idPhase, String libellePhase, LocalDate dateDebut, LocalDate dateFin, Tache tache) {
 		super();
 		this.idPhase = idPhase;
+		this.libellePhase = libellePhase;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.tache = tache;
+	}
+	
+	public Phase(String libellePhase, LocalDate dateDebut, LocalDate dateFin, Tache tache) {
+		super();
 		this.libellePhase = libellePhase;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
