@@ -51,4 +51,9 @@ public class TacheServiceImpl implements ITacheService {
 		return repoTache.findByStatusAudience(statusAudience);
 	}
 
+	@Override
+	public List<Tache> findByIdUtilisateur(Long id) {
+		return repoTache.findByIdUtilisateur(id);
+	}
+
 }
