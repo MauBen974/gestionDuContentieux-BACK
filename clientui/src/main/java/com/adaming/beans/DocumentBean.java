@@ -1,12 +1,11 @@
 package com.adaming.beans;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 public class DocumentBean {
 
 	private Long id ; 
-	private Date dateCreation; 
+	private LocalDate dateCreation; 
 	private String nom; 
 	private String description;
 	private boolean archive; 
@@ -18,10 +17,10 @@ public class DocumentBean {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getDateCreation() {
+	public LocalDate getDateCreation() {
 		return dateCreation;
 	}
-	public void setDateCreation(Date dateCreation) {
+	public void setDateCreation(LocalDate dateCreation) {
 		this.dateCreation = dateCreation;
 	}
 	public String getNom() {
@@ -49,7 +48,7 @@ public class DocumentBean {
 	public void setAffaire(AffaireBean affaire) {
 		this.affaire = affaire;
 	}
-	public DocumentBean(Date dateCreation, String nom, String description, boolean archive, AffaireBean affaire) {
+	public DocumentBean(LocalDate dateCreation, String nom, String description, boolean archive, AffaireBean affaire) {
 		super();
 		this.dateCreation = dateCreation;
 		this.nom = nom;
