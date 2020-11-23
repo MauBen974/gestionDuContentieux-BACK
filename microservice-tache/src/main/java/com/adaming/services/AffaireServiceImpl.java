@@ -15,28 +15,23 @@ public class AffaireServiceImpl implements IAffaireService {
 	
 	@Override
 	public List<Affaire> findAll() {
-		
 		return iAffaireRepository.findAll();
 	}
 
 	@Override
 	public Optional<Affaire> findOne(Long id) {
-	
 		return iAffaireRepository.findById(id);
 	}
 
 	@Override
 	public Affaire save(Affaire affaire) {
-		
 		return iAffaireRepository.save(affaire);
 	}
 
 	@Override
 	public boolean delete(Long id) {
-		
 		iAffaireRepository.deleteById(id);
 		return true;
-		
 	}
 
 }

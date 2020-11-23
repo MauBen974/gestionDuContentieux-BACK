@@ -13,8 +13,9 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-
 public class Affaire implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue
 	private Long idAffaire;
 	private String referenceAffaire;
@@ -22,7 +23,8 @@ public class Affaire implements Serializable {
 	private String descriptionAffaire; 
 	private String status;
 	@OneToMany(mappedBy="affaire",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	private List<Document> document;
+	private List<Document> documents;
+	
 	public Long getIdAffaire() {
 		return idAffaire;
 	}
@@ -55,11 +57,12 @@ public class Affaire implements Serializable {
 	}
 	@JsonManagedReference
 	public List<Document> getDocument() {
-		return document;
+		return documents;
 	}
 	public void setDocument(List<Document> document) {
-		this.document = document;
+		this.documents = document;
 	}
+	
 	public Affaire(String referenceAffaire, String titreAffaire, String descriptionAffaire, String status,
 			List<Document> document) {
 		super();
@@ -67,16 +70,17 @@ public class Affaire implements Serializable {
 		this.titreAffaire = titreAffaire;
 		this.descriptionAffaire = descriptionAffaire;
 		this.status = status;
-		this.document = document;
+		this.documents = document;
 	}
 	public Affaire() {
 		super();
 	}
+	
 	@Override
 	public String toString() {
 		return "Affaire [idAffaire=" + idAffaire + ", referenceAffaire=" + referenceAffaire + ", titreAffaire="
 				+ titreAffaire + ", descriptionAffaire=" + descriptionAffaire + ", status=" + status + ", document="
-				+ document + "]";
+				+ documents + "]";
 	}
 	
 
