@@ -1,6 +1,7 @@
 package com.adaming.proxies;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.adaming.beans.AffaireBean;
+import com.adaming.beans.DocumentBean;
 import com.adaming.beans.PhaseBean;
 import com.adaming.beans.TacheBean;
 
