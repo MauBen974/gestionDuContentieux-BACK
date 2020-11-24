@@ -1,6 +1,7 @@
 package com.adaming.entities;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Document {
 	@Id @GeneratedValue
 	private Long id ; 
-	private Date dateCreation; 
+	private LocalDate dateCreation; 
 	private String nom; 
 	private String description;
 	private boolean archive; 
@@ -29,10 +30,10 @@ public class Document {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getDateCreation() {
+	public LocalDate getDateCreation() {
 		return dateCreation;
 	}
-	public void setDateCreation(Date dateCreation) {
+	public void setDateCreation(LocalDate dateCreation) {
 		this.dateCreation = dateCreation;
 	}
 	public String getNom() {
@@ -60,7 +61,7 @@ public class Document {
 	public void setAffaire(Affaire affaire) {
 		this.affaire = affaire;
 	}
-	public Document(Date dateCreation, String nom, String description, boolean archive, Affaire affaire) {
+	public Document(LocalDate dateCreation, String nom, String description, boolean archive, Affaire affaire) {
 		super();
 		this.dateCreation = dateCreation;
 		this.nom = nom;
