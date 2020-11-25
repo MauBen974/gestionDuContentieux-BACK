@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,11 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.adaming.dto.DocumentDTO;
 import com.adaming.entities.Affaire;
@@ -34,32 +30,28 @@ public class DocumentController {
 	IDocumentRepository iDocumentRepository;
 	@Autowired
 	IDocumentMapper documentMapper;
-	
+
 	@GetMapping("/document")
-	public List<DocumentDTO> findAll(){
-		return (List<DocumentDTO>) iDocumentService.findAll()
-		.stream().map(e->documentMapper.convertToDocumentDTO(e))
-		.collect(Collectors.toList());
+	public List<DocumentDTO> findAll() {
+		return (List<DocumentDTO>) iDocumentService.findAll().stream().map(e -> documentMapper.convertToDocumentDTO(e))
+				.collect(Collectors.toList());
 	}
 
 	@GetMapping("/document/{id}")
 	public Optional<DocumentDTO> findOne(@PathVariable Long id) {
 		return documentMapper.convertToDocumentDTO(iDocumentService.findOne(id));
 	}
-	
+
 	@GetMapping("/chercherDocParAffaire/{codeaff}")
-	public List<DocumentDTO> chercherDocParAffaire(@PathVariable(value="codeaff") Affaire codeaff)
-	{
-		return (List<DocumentDTO>) iDocumentRepository.chercherDocParAffaire(codeaff)
-				.stream().map(e->documentMapper.convertToDocumentDTO(e))
-				.collect(Collectors.toList());
+	public List<DocumentDTO> chercherDocParAffaire(@PathVariable(value = "codeaff") Affaire codeaff) {
+		return (List<DocumentDTO>) iDocumentRepository.chercherDocParAffaire(codeaff).stream()
+				.map(e -> documentMapper.convertToDocumentDTO(e)).collect(Collectors.toList());
 	}
-	
+
 	@GetMapping(value = "/docNonArchive/{nonArchive}")
-	public List<DocumentDTO> findIfArchiveFalse(@PathVariable(value="nonArchive") Boolean nonArchive) {
-		return (List<DocumentDTO>) iDocumentRepository.findIfArchiveFalse(nonArchive)
-				.stream().map(e->documentMapper.convertToDocumentDTO(e))
-				.collect(Collectors.toList());
+	public List<DocumentDTO> findIfArchiveFalse(@PathVariable(value = "nonArchive") Boolean nonArchive) {
+		return (List<DocumentDTO>) iDocumentRepository.findIfArchiveFalse(nonArchive).stream()
+				.map(e -> documentMapper.convertToDocumentDTO(e)).collect(Collectors.toList());
 	}
 
 	@PostMapping("/document")
@@ -68,7 +60,7 @@ public class DocumentController {
 	}
 
 	@PutMapping("/document/{id}")
-	public DocumentDTO MiseAJour(@PathVariable Long id,@RequestBody Document d){
+	public DocumentDTO MiseAJour(@PathVariable Long id, @RequestBody Document d) {
 		d.setId(id);
 		d.setDateCreation(d.getDateCreation());
 		d.setNom(d.getNom());
@@ -77,12 +69,11 @@ public class DocumentController {
 		d.setAffaire(d.getAffaire());
 		return documentMapper.convertToDocumentDTO(iDocumentRepository.save(d));
 	}
-	
+
 	@DeleteMapping("/document/{id}")
 	public String delete(@PathVariable Long id) {
 		iDocumentService.delete(id);
 		return "Le document a bien été suprimé";
 	}
-	
 
 }

@@ -13,17 +13,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.adaming.beans.PhaseBean;
+import com.adaming.beans.TacheBean;
 import com.adaming.proxies.MicroServiceTacheProxies;
 
 @RestController
 @CrossOrigin
 public class PhaseController {
-	
+
 	@Autowired
 	private MicroServiceTacheProxies microserviceTacheProxies;
-	
+
 	@GetMapping(value = "/phases")
-	public List<PhaseBean> getAll(){
+	public List<PhaseBean> getAll() {
 		return microserviceTacheProxies.getAllPhases();
 	}
 
@@ -45,6 +46,21 @@ public class PhaseController {
 	@PutMapping(value = "/phases/{pId}")
 	public PhaseBean update(@PathVariable(value = "pId") Long id, @RequestBody PhaseBean pIn) {
 		return microserviceTacheProxies.updatePhase(id, pIn);
+	}
+
+	@GetMapping(value = "/phasestermined")
+	public List<PhaseBean> getAllNotTermined() {
+		return microserviceTacheProxies.getAllNotTermined();
+	}
+
+	@PostMapping(value = "/phases/getByTache")
+	public List<PhaseBean> findByTache(@RequestBody TacheBean tacheBean) {
+		return microserviceTacheProxies.findByTache(tacheBean);
+	}
+
+	@PutMapping(value = "/phasesLibelle/{pId}")
+	public PhaseBean updateLibelle(@PathVariable(value = "pId") Long id, @RequestBody PhaseBean phase) {
+		return microserviceTacheProxies.updateLibelle(id, phase);
 	}
 
 }
