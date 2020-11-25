@@ -51,8 +51,8 @@ public class PhaseController {
 
 	@PostMapping(value = "/phases")
 	public PhaseDTO create(@RequestBody Phase pIn) {
-		pIn.setDateFin(null);
-		return phaseMapper.convertToPhaseDTO(servPhase.save(pIn));
+		Phase pCreated = new Phase(pIn.getLibellePhase(),LocalDate.now(),null,pIn.getTache());
+		return phaseMapper.convertToPhaseDTO(servPhase.save(pCreated));
 	}
 
 	@DeleteMapping(value = "/phases/{pId}")

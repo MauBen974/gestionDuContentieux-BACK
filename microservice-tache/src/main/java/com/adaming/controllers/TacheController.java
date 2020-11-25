@@ -1,5 +1,6 @@
 package com.adaming.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,7 +46,8 @@ public class TacheController {
 
 	@PostMapping(value = "/taches")
 	public TacheDTO save(@RequestBody Tache tIn) {
-		return tacheMapper.convertToTacheDTO(servTache.save(tIn));
+		Tache tCreate = new Tache(LocalDate.now(), tIn.getTitreTache(), tIn.getDescriptionTache(), tIn.getStatusAudience(), tIn.getIdUtilisateur(), tIn.getIdTribunal());
+		return tacheMapper.convertToTacheDTO(servTache.save(tCreate));
 	}
 
 	@DeleteMapping(value = "taches/{tId}")

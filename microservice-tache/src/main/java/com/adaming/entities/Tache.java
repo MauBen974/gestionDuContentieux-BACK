@@ -112,5 +112,16 @@ public class Tache implements Serializable {
 		this.idUtilisateur = idUtilisateur;
 		this.idTribunal = idTribunal;
 	}
+	
+	public Tache(LocalDate dateCreation, String titreTache, String descriptionTache,
+			Boolean statusAudience, Long idUtilisateur, Long idTribunal) {
+		super();
+		this.dateCreation = dateCreation;
+		this.titreTache = titreTache;
+		this.descriptionTache = descriptionTache;
+		this.statusAudience = statusAudience;
+		this.idUtilisateur = idUtilisateur;
+		this.idTribunal = idTribunal;
+	}
 
 }
