@@ -65,7 +65,7 @@ public class DocumentController {
 		d.setDateCreation(d.getDateCreation());
 		d.setNom(d.getNom());
 		d.setDescription(d.getDescription());
-		d.setArchive(d.isArchive());
+		d.setArchive(d.Archive());
 		d.setAffaire(d.getAffaire());
 		return documentMapper.convertToDocumentDTO(iDocumentRepository.save(d));
 	}
