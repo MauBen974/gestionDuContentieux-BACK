@@ -14,5 +14,5 @@ public interface IDocumentRepository extends JpaRepository<Document, Long> {
 	public List<Document> chercherDocParAffaire(@Param(value="x")Affaire codeaff);
 	
 	@Query(value = "select d from Document d where d.archive like :x")
-	public List<Document> findIfArchiveFalse(@Param(value="x") Boolean nonArchive);
+	public List<Document> findIfArchiveFalse(@Param(value="x") String nonArchive);
 }
