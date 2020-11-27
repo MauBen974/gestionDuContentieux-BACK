@@ -10,7 +10,7 @@ public class DocumentDTO {
 	private Date dateCreation; 
 	private String nom; 
 	private String description;
-	private boolean archive; 
+	private String archive; 
 	private Affaire affaire;
 	public Long getId() {
 		return id;
@@ -36,10 +36,10 @@ public class DocumentDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public boolean isArchive() {
+	public String Archive() {
 		return archive;
 	}
-	public void setArchive(boolean archive) {
+	public void setArchive(String archive) {
 		this.archive = archive;
 	}
 	public Affaire getAffaire() {
@@ -51,7 +51,7 @@ public class DocumentDTO {
 	public DocumentDTO() {
 		super();
 	}
-	public DocumentDTO(Date dateCreation, String nom, String description, boolean archive, Affaire affaire) {
+	public DocumentDTO(Date dateCreation, String nom, String description, String archive, Affaire affaire) {
 		super();
 		this.dateCreation = dateCreation;
 		this.nom = nom;
