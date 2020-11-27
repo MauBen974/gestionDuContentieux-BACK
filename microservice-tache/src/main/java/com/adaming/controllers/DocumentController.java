@@ -49,7 +49,7 @@ public class DocumentController {
 	}
 
 	@GetMapping(value = "/docNonArchive/{nonArchive}")
-	public List<DocumentDTO> findIfArchiveFalse(@PathVariable(value = "nonArchive") Boolean nonArchive) {
+	public List<DocumentDTO> findIfArchiveFalse(@PathVariable(value = "nonArchive") String nonArchive) {
 		return (List<DocumentDTO>) iDocumentRepository.findIfArchiveFalse(nonArchive).stream()
 				.map(e -> documentMapper.convertToDocumentDTO(e)).collect(Collectors.toList());
 	}
