@@ -20,7 +20,7 @@ public class Document {
 	private LocalDate dateCreation; 
 	private String nom; 
 	private String description;
-	private boolean archive; 
+	private String archive; 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="CODE_Affaire")
 	private Affaire affaire;
@@ -48,10 +48,10 @@ public class Document {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public boolean isArchive() {
+	public String Archive() {
 		return archive;
 	}
-	public void setArchive(boolean archive) {
+	public void setArchive(String archive) {
 		this.archive = archive;
 	}
 	@JsonBackReference
@@ -61,7 +61,7 @@ public class Document {
 	public void setAffaire(Affaire affaire) {
 		this.affaire = affaire;
 	}
-	public Document(LocalDate dateCreation, String nom, String description, boolean archive, Affaire affaire) {
+	public Document(LocalDate dateCreation, String nom, String description, String archive, Affaire affaire) {
 		super();
 		this.dateCreation = dateCreation;
 		this.nom = nom;
