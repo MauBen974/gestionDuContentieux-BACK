@@ -28,5 +28,5 @@ public interface ITacheRepository extends JpaRepository<Tache, Long> {
 	@Query(value = "from Tache t where t.statusAudience is :statusAudience")
 	public List<Tache> findByStatusAudience(@Param(value = "statusAudience") Boolean statusAudience);
 	
-	// Update phase d'une tache
+
 }

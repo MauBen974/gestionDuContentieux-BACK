@@ -83,6 +83,12 @@ public class PhaseController {
 		return servPhase.findByTache(tacheMapper.convertToTache(dto)).stream()
 				.map(e -> phaseMapper.convertToPhaseDTO(e)).collect(Collectors.toList());
 	}
+	
+	@GetMapping(value="/phasesByTache/{idUtilisateur}")
+	public List<PhaseDTO> findByTacheByIdUtilisateur(Long idUtilisateur){
+		return servPhase.findByTacheByIdUtilisateur(idUtilisateur).stream()
+				.map(e -> phaseMapper.convertToPhaseDTO(e)).collect(Collectors.toList());
+	}
 
 	@PutMapping(value = "/phasesLibelle/{pId}")
 	public PhaseDTO updateLibelle(@PathVariable(value = "pId") Long id, @RequestBody Phase phase) {

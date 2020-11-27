@@ -62,6 +62,11 @@ public class PhaseServiceImpl implements IPhaseService {
 	public List<Phase> findByTache(Tache tache) {
 		return repoPhase.findByTache(tache);
 	}
+
+	@Override
+	public List<Phase> findByTacheByIdUtilisateur(Long idUtilisateur) {
+		return repoPhase.findByTacheByIdUtilisateur(idUtilisateur);
+	}
 	
 	
 	

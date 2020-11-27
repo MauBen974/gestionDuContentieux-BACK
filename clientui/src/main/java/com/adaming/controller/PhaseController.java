@@ -58,6 +58,11 @@ public class PhaseController {
 		return microserviceTacheProxies.findByTache(tacheBean);
 	}
 
+	@GetMapping(value="/phasesByTache/{idUtilisateur}")
+	public List<PhaseBean> findByTacheByIdUtilisateur(Long idUtilisateur) {
+		return microserviceTacheProxies.findByTacheByIdUtilisateur(idUtilisateur);
+	}
+
 	@PutMapping(value = "/phasesLibelle/{pId}")
 	public PhaseBean updateLibelle(@PathVariable(value = "pId") Long id, @RequestBody PhaseBean phase) {
 		return microserviceTacheProxies.updateLibelle(id, phase);

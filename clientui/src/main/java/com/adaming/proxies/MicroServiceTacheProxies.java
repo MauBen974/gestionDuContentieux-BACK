@@ -41,6 +41,9 @@ public interface MicroServiceTacheProxies {
 
 	@PostMapping(value = "/phases/getByTache")
 	public List<PhaseBean> findByTache(@RequestBody TacheBean tacheBean);
+	
+	@GetMapping(value="/phasesByTache/{idUtilisateur}")
+	public List<PhaseBean> findByTacheByIdUtilisateur(@PathVariable(value = "idUtilisateur") Long idUtilisateur);
 
 	@PutMapping(value = "/phasesLibelle/{pId}")
 	public PhaseBean updateLibelle(@PathVariable(value = "pId") Long id, @RequestBody PhaseBean phase);

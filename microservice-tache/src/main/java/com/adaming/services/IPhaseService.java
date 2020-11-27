@@ -24,4 +24,6 @@ public interface IPhaseService {
 //	Phase update(Long id, Phase pIn);
 
 	List<Phase> findByTache(Tache tache);
+	
+	List<Phase> findByTacheByIdUtilisateur(Long idUtilisateur);
 }
