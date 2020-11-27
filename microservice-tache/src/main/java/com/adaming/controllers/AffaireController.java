@@ -18,8 +18,10 @@ import com.adaming.entities.Affaire;
 import com.adaming.mapper.IAffaireMapper;
 import com.adaming.repositories.IAffaireRepository;
 import com.adaming.services.IAffaireService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
+@CrossOrigin("*")
 public class AffaireController {
 
 	@Autowired
