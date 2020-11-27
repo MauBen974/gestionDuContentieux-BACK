@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Utilisateur implements Serializable {
@@ -25,6 +26,8 @@ public class Utilisateur implements Serializable {
 	private String password;
 	private String role;
 	private boolean archive;
+	@Lob
+	private byte[] image;
 
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
@@ -111,6 +114,14 @@ public class Utilisateur implements Serializable {
 	public String toString() {
 		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", email=" + email + ", nom=" + nom + ", prenom="
 				+ prenom + ", password=" + password + ", role=" + role + ", archive=" + archive + "]";
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 }

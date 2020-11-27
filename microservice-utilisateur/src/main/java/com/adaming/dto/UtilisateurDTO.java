@@ -8,6 +8,7 @@ public class UtilisateurDTO {
 	private String prenom;
 	private String password;
 	private String role;
+	private byte[] image;
 	private boolean archive;
 
 	public Long getIdUtilisateur() {
@@ -74,6 +75,14 @@ public class UtilisateurDTO {
 
 	public UtilisateurDTO() {
 		super();
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 }

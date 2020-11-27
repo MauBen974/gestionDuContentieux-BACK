@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.adaming.entities.Utilisateur;
 import com.adaming.repositories.UtilisateurRepository;
@@ -56,6 +57,26 @@ public class UtilisateurServiceImp implements IUtilisateurService {
 	@Override
 	public Optional<Utilisateur> authentification(String email, String password) {
 		return utilisateurRepo.authentification(email, password);
+	}
+
+	@Override
+	public String saveUtilisateurImage(String nom, String prenom, String email, String password, String role,
+			MultipartFile file) {
+		try {
+			Utilisateur currentUser = new Utilisateur();
+			currentUser.setNom(nom);
+			currentUser.setPrenom(prenom);
+			currentUser.setEmail(email);
+			currentUser.setPassword(password);
+			currentUser.setRole(role);
+			currentUser.setImage(file.getBytes());
+			utilisateurRepo.save(currentUser);
+			return "File uploaded successfuly filname ="+file.getOriginalFilename();
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			return "Fail ! check the file size";
+		}
 	}
 
 }

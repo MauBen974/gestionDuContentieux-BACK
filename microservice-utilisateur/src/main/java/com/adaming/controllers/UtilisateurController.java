@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.adaming.dto.UtilisateurDTO;
 import com.adaming.entities.Utilisateur;
@@ -55,6 +56,14 @@ public class UtilisateurController {
 		return utilisateurMapper.convertToUtilisateurDTO(utilisateurService.saveUtilisateur(utilisateur));
 	}
 
+	@PostMapping("/utilisateurs-image")
+	public String saveUtilisateur(@RequestParam("nom") String nom,@RequestParam("prenom") String prenom,
+			@RequestParam("email") String email,@RequestParam("password") String password,
+			@RequestParam("role") String role,@RequestParam("file") MultipartFile file) {
+		return utilisateurService.saveUtilisateurImage(nom, prenom, email, password, role, file);
+		 
+	}
+	
 	@PostMapping("/utilisateurs/{idUtilisateur}")
 	public UtilisateurDTO archiveUtilisateur(@PathVariable("idUtilisateur") Long id) {
 		return utilisateurMapper.convertToUtilisateurDTO(utilisateurService.archiveUtilisateur(id));
